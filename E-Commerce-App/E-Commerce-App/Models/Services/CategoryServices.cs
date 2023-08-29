@@ -28,8 +28,10 @@ namespace E_Commerce_App.Models.Services
         {
             var newList = await _category.Categories.Select(c => new CategoryDTO
             {
+
                 CategoryId = c.CategoryId,
                 Name = c.Name,
+
             }).ToListAsync();
             return newList;
         }

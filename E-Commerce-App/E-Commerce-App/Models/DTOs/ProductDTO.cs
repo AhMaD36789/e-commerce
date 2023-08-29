@@ -15,7 +15,7 @@ namespace E_Commerce_App.Models.DTOs
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
-        //public int StockQuantity { get; set; }
+        public int StockQuantity { get; set; }
 
         [Display(Name = "Image")]
         public string ProductImage { get; set; }

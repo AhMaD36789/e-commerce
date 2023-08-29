@@ -42,6 +42,8 @@ namespace E_Commerce_App.Models.Services
             var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == productID);
             var newProductDTO = new ProductDTO
             {
+                ProductId = productID,
+                CategoryId = newProduct.CategoryId,
                 Name = newProduct.Name,
                 Price = newProduct.Price,
                 Description = newProduct.Description,
@@ -56,6 +58,8 @@ namespace E_Commerce_App.Models.Services
                 .Where(id => id.CategoryId == categoryID)
                 .Select(p => new ProductDTO
                 {
+                    ProductId = p.ProductId,
+                    CategoryId = categoryID,
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description,
