@@ -28,16 +28,20 @@ namespace E_Commerce_App.Models.Services
         {
             var newList = await _category.Categories.Select(c => new CategoryDTO
             {
+
+                CategoryId = c.CategoryId,
                 Name = c.Name,
+
             }).ToListAsync();
             return newList;
         }
 
-        public async Task<CategoryDTO> GetCategoryById(int Id)
+        public async Task<CategoryDTO> GetCategoryById(int categoryID)
         {
-            var newCategory = await _category.Categories.FirstOrDefaultAsync(c => c.CategoryId == Id);
+            var newCategory = await _category.Categories.FirstOrDefaultAsync(c => c.CategoryId == categoryID);
             var CategoryDTO = new CategoryDTO
             {
+                CategoryId = categoryID,
                 Name = newCategory.Name
             };
             return CategoryDTO;
