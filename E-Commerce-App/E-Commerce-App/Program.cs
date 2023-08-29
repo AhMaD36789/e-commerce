@@ -1,3 +1,6 @@
+using E_Commerce_App.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace E_Commerce_App
 {
     public class Program
@@ -7,7 +10,15 @@ namespace E_Commerce_App
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+
+            builder.Services.AddControllers();
+            string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services
+                .AddDbContext<StoreDbContext>
+                (opions => opions.UseSqlServer(connString));
+
 
             var app = builder.Build();
 
