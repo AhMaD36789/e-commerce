@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj": {}
+    "D:\\Visual Studio\\E-Commerce\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj": {}
   },
   "projects": {
-    "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj": {
+    "D:\\Visual Studio\\E-Commerce\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
+        "projectUniqueName": "D:\\Visual Studio\\E-Commerce\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
         "projectName": "E-Commerce-App",
-        "projectPath": "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\obj\\",
+        "projectPath": "D:\\Visual Studio\\E-Commerce\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
+        "packagesPath": "C:\\Users\\ahmad\\.nuget\\packages\\",
+        "outputPath": "D:\\Visual Studio\\E-Commerce\\E-Commerce-App\\E-Commerce-App\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

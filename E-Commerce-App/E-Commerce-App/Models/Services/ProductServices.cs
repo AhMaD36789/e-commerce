@@ -37,9 +37,9 @@ namespace E_Commerce_App.Models.Services
             return newProduct;
         }
 
-        public async Task<ProductDTO> GetProductById(int Id)
+        public async Task<ProductDTO> GetProductById(int productID)
         {
-            var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == Id);
+            var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == productID);
             var newProductDTO = new ProductDTO
             {
                 Name = newProduct.Name,
@@ -48,6 +48,21 @@ namespace E_Commerce_App.Models.Services
                 ProductImage = newProduct.ProductImage,
             };
             return newProductDTO;
+        }
+
+        public async Task<List<ProductDTO>> GetProductsByCategory(int categoryID)
+        {
+            var newProduct = await _product.Products
+                .Where(id => id.CategoryId == categoryID)
+                .Select(p => new ProductDTO
+                {
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+                    ProductImage = p.ProductImage,
+                }).ToListAsync();
+
+            return newProduct;
         }
 
         public Task<ProductDTO> UpdateProduct(int Id, ProductDTO productDTO)

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<E_Commerce_App.Models.DTOs.CategoryDTO>
+
+@{
+    ViewData["Title"] = "AdminDashboard";
+}
+
+<h1>AdminDashboard</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 @Html.DisplayNameFor(model => model.Name) 
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                
+                <a asp-action="CategoryDetails" asp-route-id="@item.CategoryId" asp-route-categoryID="@item.CategoryId">Details</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>

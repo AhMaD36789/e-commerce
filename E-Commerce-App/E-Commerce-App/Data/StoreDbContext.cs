@@ -1,6 +1,5 @@
 ﻿using E_Commerce_App.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace E_Commerce_App.Data
 {
@@ -45,7 +44,8 @@ namespace E_Commerce_App.Data
                          Description = "Powerful laptop for professionals",
                          Price = 1499,
                          StockQuantity = 50,
-                         CategoryId = 1
+                         CategoryId = 1,
+                         ProductImage = null
                      },
                      new Product
                      {
@@ -54,7 +54,8 @@ namespace E_Commerce_App.Data
                          Description = "Sleek and high-performance laptop",
                          Price = 1299,
                          StockQuantity = 40,
-                         CategoryId = 1
+                         CategoryId = 1,
+                         ProductImage = null
                      },
                      new Product
                      {
@@ -63,7 +64,8 @@ namespace E_Commerce_App.Data
                          Description = "Gaming laptop",
                          Price = 999,
                          StockQuantity = 35,
-                         CategoryId = 1
+                         CategoryId = 1,
+                         ProductImage = null
                      },
                            new Product
                              {
@@ -72,7 +74,8 @@ namespace E_Commerce_App.Data
                                  Description = "Stylish and durable laptop carrying bag",
                                  Price = 49,
                                  StockQuantity = 200,
-                                 CategoryId = 2
+                                 CategoryId = 2,
+                                 ProductImage = null
                              },
                              new Product
                              {
@@ -81,7 +84,8 @@ namespace E_Commerce_App.Data
                                  Description = "Ergonomic wireless mouse",
                                  Price = 19,
                                  StockQuantity = 150,
-                                 CategoryId = 2
+                                 CategoryId = 2,
+                                 ProductImage = null
                              },
                              new Product
                              {
@@ -90,7 +94,8 @@ namespace E_Commerce_App.Data
                                  Description = "Adjustable laptop stand for better ergonomics",
                                  Price = 29,
                                  StockQuantity = 100,
-                                 CategoryId = 2
+                                 CategoryId = 2,
+                                 ProductImage = null
                              },
                         new Product
                         {
@@ -99,7 +104,8 @@ namespace E_Commerce_App.Data
                             Description = "Full HD monitor for crisp visuals",
                             Price = 199,
                             StockQuantity = 30,
-                            CategoryId = 3
+                            CategoryId = 3,
+                            ProductImage = null
                         },
                         new Product
                         {
@@ -108,7 +114,8 @@ namespace E_Commerce_App.Data
                             Description = "High-resolution 4K monitor with vibrant colors",
                             Price = 399,
                             StockQuantity = 20,
-                            CategoryId = 3
+                            CategoryId = 3,
+                            ProductImage = null
                         },
                         new Product
                         {
@@ -117,7 +124,8 @@ namespace E_Commerce_App.Data
                             Description = "Sturdy stand to hold two monitors for multitasking",
                             Price = 89,
                             StockQuantity = 10,
-                            CategoryId = 3
+                            CategoryId = 3,
+                            ProductImage = null
                         }
                         });
         }
