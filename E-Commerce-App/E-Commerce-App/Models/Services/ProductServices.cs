@@ -31,6 +31,7 @@ namespace E_Commerce_App.Models.Services
                 Name = p.Name,
                 Price = p.Price,
                 Description = p.Description,
+                StockQuantity = p.StockQuantity,
                 ProductImage = p.ProductImage,
             }).ToListAsync();
 
@@ -47,6 +48,7 @@ namespace E_Commerce_App.Models.Services
                 Name = newProduct.Name,
                 Price = newProduct.Price,
                 Description = newProduct.Description,
+                StockQuantity = newProduct.StockQuantity,
                 ProductImage = newProduct.ProductImage,
             };
             return newProductDTO;
@@ -63,6 +65,7 @@ namespace E_Commerce_App.Models.Services
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description,
+                    StockQuantity= p.StockQuantity,
                     ProductImage = p.ProductImage,
                 }).ToListAsync();
 

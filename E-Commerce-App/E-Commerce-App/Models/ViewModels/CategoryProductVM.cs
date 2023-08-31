@@ -2,7 +2,7 @@
 
 namespace E_Commerce_App.Models.ViewModels
 {
-    public class CategoryProductVW
+    public class CategoryProductVM
     {
         public CategoryDTO Category { get; set; }
         public List<ProductDTO> Products { get; set; }

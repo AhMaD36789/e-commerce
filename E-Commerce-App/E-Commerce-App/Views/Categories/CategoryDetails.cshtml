@@ -1,4 +1,4 @@
-﻿@model E_Commerce_App.Models.ViewModels.CategoryProductVW
+﻿@model E_Commerce_App.Models.ViewModels.CategoryProductVM
 
 @{
     ViewData["Title"] = "View";
@@ -18,24 +18,27 @@
     </dl>
 </div>
 
-<div class="row">
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<div class="row ">
     @foreach (var item in Model.Products)
     {
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4 text-black">
             <div class="card">
                 <img src="https://pngimg.com/uploads/laptop/laptop_PNG101778.png" class="card-img-top" alt="@item.Name">
                 <div class="card-body">
                     <h5 class="card-title">@item.Name</h5>
                     <h5 class="card-title">@item.Price.ToString("0.00 JD")</h5>
                     <p class="card-text">@item.Description</p>
-                    <a href="@Url.Action("ProductDetails", new { productID = item.ProductId })" class="btn btn-primary">Details</a>
+                    <a href="@Url.Action("ProductDetails","Products", new { productID = item.ProductId })" class="btn btn-primary">Details</a>
+                    <a href="@Url.Action("Edit","Products", new { id = item.ProductId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete","Products", new { id = item.ProductId })" class="btn btn-primary">Delete</a>
                 </div>
             </div>
         </div>
     }
 </div>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Category.CategoryId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
