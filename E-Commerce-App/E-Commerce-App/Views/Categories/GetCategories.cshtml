@@ -2,14 +2,14 @@
 
 @{
     ViewData["Title"] = "AdminDashboard";
-}
+} 
 
-<h1>AdminDashboard</h1>
+<h1>Categories</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-controller="Categories">Create New</a>
 </p>
-<table class="table">
+<table class="table text-light">
     <thead>
         <tr>
             <th>
@@ -26,7 +26,7 @@
             </td>
             <td>
                 
-                <a asp-action="CategoryDetails" asp-route-id="@item.CategoryId" asp-route-categoryID="@item.CategoryId">Details</a>
+                <a asp-action="CategoryDetails"  asp-route-categoryID="@item.CategoryId">Details</a>
                 
             </td>
         </tr>
