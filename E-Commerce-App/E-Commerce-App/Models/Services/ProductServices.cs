@@ -37,17 +37,36 @@ namespace E_Commerce_App.Models.Services
             return newProduct;
         }
 
-        public async Task<ProductDTO> GetProductById(int Id)
+        public async Task<ProductDTO> GetProductById(int productID)
         {
-            var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == Id);
+            var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == productID);
             var newProductDTO = new ProductDTO
             {
+                ProductId = productID,
+                CategoryId = newProduct.CategoryId,
                 Name = newProduct.Name,
                 Price = newProduct.Price,
                 Description = newProduct.Description,
                 ProductImage = newProduct.ProductImage,
             };
             return newProductDTO;
+        }
+
+        public async Task<List<ProductDTO>> GetProductsByCategory(int categoryID)
+        {
+            var newProduct = await _product.Products
+                .Where(id => id.CategoryId == categoryID)
+                .Select(p => new ProductDTO
+                {
+                    ProductId = p.ProductId,
+                    CategoryId = categoryID,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+                    ProductImage = p.ProductImage,
+                }).ToListAsync();
+
+            return newProduct;
         }
 
         public Task<ProductDTO> UpdateProduct(int Id, ProductDTO productDTO)

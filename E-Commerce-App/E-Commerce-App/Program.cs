@@ -1,4 +1,6 @@
 using E_Commerce_App.Data;
+using E_Commerce_App.Models.Interfaces;
+using E_Commerce_App.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_App
@@ -11,6 +13,9 @@ namespace E_Commerce_App
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            builder.Services.AddTransient<ICategory, CategoryServices>();
+            builder.Services.AddTransient<IProduct, ProductServices>();
 
 
             builder.Services.AddControllers();
