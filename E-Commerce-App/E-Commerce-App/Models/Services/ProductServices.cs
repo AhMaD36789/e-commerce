@@ -1,5 +1,4 @@
 ﻿using E_Commerce_App.Data;
-using E_Commerce_App.Models.DTOs;
 using E_Commerce_App.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,67 +11,47 @@ namespace E_Commerce_App.Models.Services
         {
             _product = db;
         }
-        public Task<ProductDTO> AddNewProduct(ProductDTO productDTO)
+        public async Task<Product> AddNewProduct(Product product)
         {
-            throw new NotImplementedException();
+            _product.Add(product);
+            await _product.SaveChangesAsync();
+            return product;
         }
 
         public async Task DeleteProduct(int Id)
         {
-            Product product = await _product.Products.FindAsync(Id);
-            _product.Entry(product).State = EntityState.Deleted;
+            var product = await _product.Products.FindAsync(Id);
+            if (product == null)
+                throw new KeyNotFoundException($"Product with id {Id} not found.");
+            _product.Products.Remove(product);
             await _product.SaveChangesAsync();
+
         }
 
-        public async Task<List<ProductDTO>> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            var newProduct = await _product.Products.Select(p => new ProductDTO
-            {
-                Name = p.Name,
-                Price = p.Price,
-                Description = p.Description,
-                StockQuantity = p.StockQuantity,
-                ProductImage = p.ProductImage,
-            }).ToListAsync();
+            var newProduct = await _product.Products.ToListAsync();
 
             return newProduct;
         }
 
-        public async Task<ProductDTO> GetProductById(int productID)
+        public async Task<Product> GetProductById(int productID)
         {
             var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == productID);
-            var newProductDTO = new ProductDTO
-            {
-                ProductId = productID,
-                CategoryId = newProduct.CategoryId,
-                Name = newProduct.Name,
-                Price = newProduct.Price,
-                Description = newProduct.Description,
-                StockQuantity = newProduct.StockQuantity,
-                ProductImage = newProduct.ProductImage,
-            };
-            return newProductDTO;
+
+            return newProduct;
         }
 
-        public async Task<List<ProductDTO>> GetProductsByCategory(int categoryID)
+        public async Task<List<Product>> GetProductsByCategory(int categoryID)
         {
             var newProduct = await _product.Products
                 .Where(id => id.CategoryId == categoryID)
-                .Select(p => new ProductDTO
-                {
-                    ProductId = p.ProductId,
-                    CategoryId = categoryID,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description,
-                    StockQuantity= p.StockQuantity,
-                    ProductImage = p.ProductImage,
-                }).ToListAsync();
+                .ToListAsync();
 
             return newProduct;
         }
 
-        public Task<ProductDTO> UpdateProduct(int Id, ProductDTO productDTO)
+        public Task<Product> UpdateProduct(int Id, Product productDTO)
         {
             throw new NotImplementedException();
         }

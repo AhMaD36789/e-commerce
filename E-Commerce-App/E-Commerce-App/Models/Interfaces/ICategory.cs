@@ -1,13 +1,11 @@
-﻿using E_Commerce_App.Models.DTOs;
-
-namespace E_Commerce_App.Models.Interfaces
+﻿namespace E_Commerce_App.Models.Interfaces
 {
     public interface ICategory
     {
-        Task<CategoryDTO> CreateNewCategory(CategoryDTO categoryDTO);
-        Task<CategoryDTO> GetCategoryById(int categoryID);
-        Task<List<CategoryDTO>> GetAllCategories();
-        Task<CategoryDTO> UpdateCategory(int Id, CategoryDTO categoryDTO);
+        Task<Category> CreateNewCategory(Category categoryDTO);
+        Task<Category> GetCategoryById(int categoryID);
+        Task<List<Category>> GetAllCategories();
+        Task<Category> UpdateCategory(int Id, Category categoryDTO);
         Task DeleteCategory(int Id);
     }
 }
