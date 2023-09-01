@@ -1,55 +1,78 @@
 ﻿using E_Commerce_App.Data;
-using E_Commerce_App.Models.DTOs;
+using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace E_Commerce_App.Models.Services
+public class CategoryServices : ICategory
 {
-    public class CategoryServices : ICategory
+    private readonly StoreDbContext _context;
+
+    public CategoryServices(StoreDbContext context)
     {
-        private readonly StoreDbContext _category;
-        public CategoryServices(StoreDbContext DB)
+        _context = context;
+    }
+
+    public async Task<Category> CreateNewCategory(Category categoryDTO)
+    {
+        var category = new Category
         {
-            _category = DB;
+            Name = categoryDTO.Name
+        };
+
+        _context.Categories.Add(category);
+
+        await _context.SaveChangesAsync();
+
+        categoryDTO.CategoryId = category.CategoryId;
+
+        return categoryDTO;
+    }
+
+    public async Task DeleteCategory(int Id)
+    {
+        var category = await _context.Categories.FindAsync(Id);
+
+        if (category != null)
+        {
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
         }
-        public Task<CategoryDTO> CreateNewCategory(CategoryDTO categoryDTO)
+    }
+
+    public async Task<List<Category>> GetAllCategories()
+    {
+        var categories = await _context.Categories.ToListAsync();
+
+        return categories;
+    }
+
+    public async Task<Category> GetCategoryById(int categoryID)
+    {
+        var category = await _context.Categories.FindAsync(categoryID);
+
+        if (category == null)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
-        public async Task DeleteCategory(int Id)
+        return category;
+    }
+
+    public async Task<Category> UpdateCategory(int Id, Category categoryDTO)
+    {
+        var category = await _context.Categories.FindAsync(Id);
+
+        if (category == null)
         {
-            Category category = await _category.Categories.FindAsync(Id);
-            _category.Entry(category).State = EntityState.Deleted;
-            await _category.SaveChangesAsync();
+            return null;
         }
 
-        public async Task<List<CategoryDTO>> GetAllCategories()
-        {
-            var newList = await _category.Categories.Select(c => new CategoryDTO
-            {
+        category.Name = categoryDTO.Name;
 
-                CategoryId = c.CategoryId,
-                Name = c.Name,
+        _context.Categories.Update(category);
 
-            }).ToListAsync();
-            return newList;
-        }
+        await _context.SaveChangesAsync();
 
-        public async Task<CategoryDTO> GetCategoryById(int categoryID)
-        {
-            var newCategory = await _category.Categories.FirstOrDefaultAsync(c => c.CategoryId == categoryID);
-            var CategoryDTO = new CategoryDTO
-            {
-                CategoryId = categoryID,
-                Name = newCategory.Name
-            };
-            return CategoryDTO;
-        }
-
-        public Task<CategoryDTO> UpdateCategory(int Id, CategoryDTO categoryDTO)
-        {
-            throw new NotImplementedException();
-        }
+        return categoryDTO;
     }
 }

@@ -1,10 +1,8 @@
-﻿using E_Commerce_App.Models.DTOs;
-
-namespace E_Commerce_App.Models.ViewModels
+﻿namespace E_Commerce_App.Models.ViewModels
 {
     public class CategoryProductVM
     {
-        public CategoryDTO Category { get; set; }
-        public List<ProductDTO> Products { get; set; }
+        public Category Category { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

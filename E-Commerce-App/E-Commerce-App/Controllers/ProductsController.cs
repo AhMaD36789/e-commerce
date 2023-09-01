@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using E_Commerce_App.Data;
+using E_Commerce_App.Models;
+using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using E_Commerce_App.Data;
-using E_Commerce_App.Models;
-using E_Commerce_App.Models.Interfaces;
 
 namespace E_Commerce_App.Controllers
 {
@@ -22,13 +18,13 @@ namespace E_Commerce_App.Controllers
             _product = product;
         }
 
-
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var storeDbContext = _context.Products.Include(p => p.Category);
-            return View(await storeDbContext.ToListAsync());
+            var returnList = await _product.GetAllProducts();
+            return View(returnList);
         }
+
         public async Task<IActionResult> GetProducts(int categoryID)
         {
             var products = await _product.GetProductsByCategory(categoryID);
@@ -41,16 +37,15 @@ namespace E_Commerce_App.Controllers
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null || _context.Products == null)
+
             {
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _product.GetProductById(id);
             if (product == null)
             {
                 return NotFound();
@@ -60,9 +55,9 @@ namespace E_Commerce_App.Controllers
         }
 
         // GET: Products/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
             return View();
         }
 
@@ -75,8 +70,7 @@ namespace E_Commerce_App.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                await _product.AddNewProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
@@ -96,7 +90,7 @@ namespace E_Commerce_App.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -131,22 +125,21 @@ namespace E_Commerce_App.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
+
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _product.GetProductById(id);
             if (product == null)
             {
                 return NotFound();
@@ -164,13 +157,9 @@ namespace E_Commerce_App.Controllers
             {
                 return Problem("Entity set 'StoreDbContext.Products'  is null.");
             }
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-            }
 
-            await _context.SaveChangesAsync();
+            await _product.DeleteProduct(id);
+
             return RedirectToAction(nameof(Index));
         }
 
