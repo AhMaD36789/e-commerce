@@ -33,9 +33,9 @@
                     <h5 class="card-title">@item.Name</h5>
                     <h5 class="card-title">@item.Price.ToString("0.00 JD")</h5>
                     <p class="card-text">@item.Description</p>
-                    <a href="@Url.Action("ProductDetails","Products", new { productID = item.ProductId })" class="btn btn-primary">Details</a>
+                    <a href="@Url.Action("ProductDetails","Products", new { productID = item.ProductId })" class="btn btn-info">Details</a>
                     <a href="@Url.Action("Edit","Products", new { id = item.ProductId })" class="btn btn-primary">Edit</a>
-                    <a href="@Url.Action("Delete","Products", new { id = item.ProductId })" class="btn btn-primary">Delete</a>
+                    <a href="@Url.Action("Delete","Products", new { id = item.ProductId })" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>

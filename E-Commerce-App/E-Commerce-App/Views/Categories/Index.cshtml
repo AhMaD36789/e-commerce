@@ -7,29 +7,23 @@
 <h1>Categories</h1>
 
 <p>
-    <a asp-action="Create" asp-controller="Categories">Create New</a>
+    <a class="btn btn-success" asp-action="Create" asp-controller="Categories">Create New</a>
 </p>
-<table class="table text-light">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                    <a asp-action="CategoryDetails" asp-route-categoryID="@item.CategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4 text-black">
+            <div class="card">
+                <img src="https://pngimg.com/uploads/laptop/laptop_PNG101778.png" class="card-img-top" alt="@item.Name">
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <a href="@Url.Action("Edit", new { id = item.CategoryId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("CategoryDetails", new { categoryID = item.CategoryId })" class="btn btn-info">Details</a>
+                    <a href="@Url.Action("Delete", new { id = item.CategoryId })" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
