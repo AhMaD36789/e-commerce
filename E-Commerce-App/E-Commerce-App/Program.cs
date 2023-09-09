@@ -14,10 +14,6 @@ namespace E_Commerce_App
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            builder.Services.AddTransient<ICategory, CategoryServices>();
-            builder.Services.AddTransient<IProduct, ProductServices>();
-
-
             builder.Services.AddControllers();
             string connString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services
@@ -39,9 +35,6 @@ namespace E_Commerce_App
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
