@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/E-Commerce-App/.vs/E-Commerce-App/FileContentIndex/0fe19851-1779-434f-83ad-b68cb5bf516b.vsidx
+/E-Commerce-App/.vs/E-Commerce-App/FileContentIndex/6b26e61d-8068-45a5-85dc-0b32897cde7a.vsidx
+/E-Commerce-App/.vs/E-Commerce-App/FileContentIndex/909d5e5b-e649-4bae-afbd-55162ddec8ba.vsidx
+/E-Commerce-App/.vs/E-Commerce-App/FileContentIndex/9ea464da-ae5e-42a8-b79d-0933b0070ca0.vsidx
+/E-Commerce-App/.vs/E-Commerce-App/FileContentIndex/de5e5900-fb60-4fc6-825f-7a61089f5b3d.vsidx
+/E-Commerce-App/.vs/E-Commerce-App/v17/.suo
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.assets.cache
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.GeneratedMSBuildEditorConfig.editorconfig
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/project.razor.vs.json
+/.gitignore
