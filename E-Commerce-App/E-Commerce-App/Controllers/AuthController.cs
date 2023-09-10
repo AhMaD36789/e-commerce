@@ -41,6 +41,7 @@ namespace E_Commerce_App.Controllers
                 return View(register);
             }
         }
+
         [HttpPost]
         public async Task<ActionResult<UserDTO>> Authenticate(LoginDTO loginData)
         {
@@ -48,24 +49,24 @@ namespace E_Commerce_App.Controllers
 
             if (user == null)
             {
-                this.ModelState.AddModelError("InvalidLogin", "Invalid login attempt");
+                ModelState.AddModelError(string.Empty, "Username or password is incorrect.");
 
-                return RedirectToAction("Index");
+                return View("Index", loginData);
             }
             else
             {
-                string jwtToken = user.Token;
+                //string jwtToken = user.Token;
 
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.UtcNow.AddMinutes(60)
-                };
+                //var cookieOptions = new CookieOptions
+                //{
+                //    HttpOnly = true,
+                //    Secure = true,
+                //    SameSite = SameSiteMode.Strict,
+                //    Expires = DateTime.UtcNow.AddMinutes(60)
+                //};
 
-                // Set the JWT token in the cookie
-                Response.Cookies.Append("authToken", jwtToken, cookieOptions);
+                //// Set the JWT token in the cookie
+                //Response.Cookies.Append("authToken", jwtToken, cookieOptions);
 
                 TempData["AlertMessage"] = $"Welcome {loginData.UserName} in Tech Pioneers Website :)";
                 return RedirectToAction("Index", "Home");
@@ -74,9 +75,10 @@ namespace E_Commerce_App.Controllers
         // call LogOut service to LogOut then go to home
 
 
-        public IActionResult LogOut()
+        [HttpPost]
+        public async Task<IActionResult> LogOut()
         {
-            Response.Cookies.Delete("authToken");
+            await userService.LogOut();
             return RedirectToAction("Index", "Home");
         }
     }
