@@ -14,12 +14,12 @@ namespace E_Commerce_App.Models.Services
 
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        private readonly JWTTokenService _jwtTokenService;
-        public IdentityUserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> SignInMngr, JWTTokenService jwtTokenService )
+        //private readonly JWTTokenService _jwtTokenService;
+        public IdentityUserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> SignInMngr)//, JWTTokenService jwtTokenService )
         {
             _userManager = userManager;
             _signInManager = SignInMngr;
-            _jwtTokenService = jwtTokenService;
+           // _jwtTokenService = jwtTokenService;
         }
 
         public async Task<UserDTO> Register(RegisterUserDTO registerUserDTO, ModelStateDictionary modelState)
@@ -40,7 +40,7 @@ namespace E_Commerce_App.Models.Services
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Token = await _jwtTokenService.GetToken(user, System.TimeSpan.FromMinutes(60)),
+                    //Token = await _jwtTokenService.GetToken(user, System.TimeSpan.FromMinutes(60)),
                     Roles = await _userManager.GetRolesAsync(user)
                 };
 
@@ -69,7 +69,7 @@ namespace E_Commerce_App.Models.Services
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Token = await _jwtTokenService.GetToken(user, System.TimeSpan.FromMinutes(60)),
+                   // Token = await _jwtTokenService.GetToken(user, System.TimeSpan.FromMinutes(60)),
                     Roles = await _userManager.GetRolesAsync(user)
                 };
             }
@@ -88,6 +88,10 @@ namespace E_Commerce_App.Models.Services
             {
                 UserName = user.UserName
             };
+        }
+        public async Task LogOut()
+        {
+            await _signInManager.SignOutAsync();
         }
 
     }

@@ -13,7 +13,7 @@ namespace E_Commerce_App.Models.Interfaces
         // Get All users method
         public Task<UserDTO> GetUser(ClaimsPrincipal principal);
         // logout method
-       // public Task LogOut();
+        public Task LogOut();
         public Task<List<ApplicationUser>> getAll();
     }
 }

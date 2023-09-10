@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bNrf/W+gHlQK1kI/n5ePrSGLttegg72FZc9sYlv/3zI=",
+  "Hash": "2KpXBF0WWB/OKgah5vZaj/eZow9BpietRNYgfUpFV30=",
   "Source": "E-Commerce-App",
   "BasePath": "_content/E-Commerce-App",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\wwwroot\\Images\\Logo-01.png",
+      "SourceId": "E-Commerce-App",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\wwwroot\\",
+      "BasePath": "_content/E-Commerce-App",
+      "RelativePath": "Images/Logo-01.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Logo-01.png"
     },
     {
       "Identity": "D:\\VS\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\wwwroot\\js\\site.js",
