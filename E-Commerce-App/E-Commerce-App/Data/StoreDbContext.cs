@@ -50,7 +50,7 @@ namespace E_Commerce_App.Data
                          Price = 1499,
                          StockQuantity = 50,
                          CategoryId = 1,
-                         ProductImage = null
+                         ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/mbp-spacegray-select-202206.jpeg"
                      },
                      new Product
                      {
@@ -60,7 +60,7 @@ namespace E_Commerce_App.Data
                          Price = 1299,
                          StockQuantity = 40,
                          CategoryId = 1,
-                         ProductImage = null
+                         ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/dell-xps-14-silver-1.jpg"
                      },
                      new Product
                      {
@@ -70,7 +70,7 @@ namespace E_Commerce_App.Data
                          Price = 999,
                          StockQuantity = 35,
                          CategoryId = 1,
-                         ProductImage = null
+                         ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/LEGion-5.jpeg"
                      },
                            new Product
                              {
@@ -80,7 +80,7 @@ namespace E_Commerce_App.Data
                                  Price = 49,
                                  StockQuantity = 200,
                                  CategoryId = 2,
-                                 ProductImage = null
+                                 ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/Lenovo-Toploader-T210-15.6-Inch-Casual-Laptop-Bag-Grey-.jpg"
                              },
                              new Product
                              {
@@ -90,7 +90,7 @@ namespace E_Commerce_App.Data
                                  Price = 19,
                                  StockQuantity = 150,
                                  CategoryId = 2,
-                                 ProductImage = null
+                                 ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/6333841_sd.jpg"
                              },
                              new Product
                              {
@@ -100,7 +100,7 @@ namespace E_Commerce_App.Data
                                  Price = 29,
                                  StockQuantity = 100,
                                  CategoryId = 2,
-                                 ProductImage = null
+                                 ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/Ergonomic-Adjustable-Foldable-Laptop-Stand-_2.jpg"
                              },
                         new Product
                         {
@@ -110,7 +110,7 @@ namespace E_Commerce_App.Data
                             Price = 199,
                             StockQuantity = 30,
                             CategoryId = 3,
-                            ProductImage = null
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/24inchmonitors-2048px-9964.jpg"
                         },
                         new Product
                         {
@@ -120,7 +120,7 @@ namespace E_Commerce_App.Data
                             Price = 399,
                             StockQuantity = 20,
                             CategoryId = 3,
-                            ProductImage = null
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/4kmonitors-2048px-9782.jpg"
                         },
                         new Product
                         {
@@ -130,14 +130,14 @@ namespace E_Commerce_App.Data
                             Price = 89,
                             StockQuantity = 10,
                             CategoryId = 3,
-                            ProductImage = null
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/vari-2-monitor_48003_silver_iso.jpg"
                         }
                         });
             SeedRole(modelBuilder, "Administrator");
             SeedRole(modelBuilder, "Editor");
             SeedRole(modelBuilder, "Users");
         }
-      
+
 
         private void SeedRole(ModelBuilder modelBuilder, string roleName)
         {

@@ -11,7 +11,8 @@ namespace E_Commerce_App.Models.Services
         {
             _product = db;
         }
-        public async Task<Product> AddNewProduct(Product product)
+
+        public async Task<Product> AddNewProduct(IFormFile file, Product product)
         {
             _product.Add(product);
             await _product.SaveChangesAsync();

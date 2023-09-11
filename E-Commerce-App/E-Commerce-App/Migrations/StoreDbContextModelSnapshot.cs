@@ -163,6 +163,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Powerful laptop for professionals",
                             Name = "MacBook Pro",
                             Price = 1499m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/mbp-spacegray-select-202206.jpeg",
                             StockQuantity = 50
                         },
                         new
@@ -172,6 +173,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Sleek and high-performance laptop",
                             Name = "Dell XPS 13",
                             Price = 1299m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/dell-xps-14-silver-1.jpg",
                             StockQuantity = 40
                         },
                         new
@@ -181,6 +183,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Gaming laptop",
                             Name = "Lenovo LEGION 5",
                             Price = 999m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/LEGion-5.jpeg",
                             StockQuantity = 35
                         },
                         new
@@ -190,6 +193,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Stylish and durable laptop carrying bag",
                             Name = "Laptop Bag",
                             Price = 49m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/Lenovo-Toploader-T210-15.6-Inch-Casual-Laptop-Bag-Grey-.jpg",
                             StockQuantity = 200
                         },
                         new
@@ -199,6 +203,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Ergonomic wireless mouse",
                             Name = "Wireless Mouse",
                             Price = 19m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/6333841_sd.jpg",
                             StockQuantity = 150
                         },
                         new
@@ -208,6 +213,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Adjustable laptop stand for better ergonomics",
                             Name = "Laptop Stand",
                             Price = 29m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/Ergonomic-Adjustable-Foldable-Laptop-Stand-_2.jpg",
                             StockQuantity = 100
                         },
                         new
@@ -217,6 +223,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Full HD monitor for crisp visuals",
                             Name = "24-Inch Monitor",
                             Price = 199m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/24inchmonitors-2048px-9964.jpg",
                             StockQuantity = 30
                         },
                         new
@@ -226,6 +233,7 @@ namespace E_Commerce_App.Migrations
                             Description = "High-resolution 4K monitor with vibrant colors",
                             Name = "27-Inch 4K Monitor",
                             Price = 399m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/4kmonitors-2048px-9782.jpg",
                             StockQuantity = 20
                         },
                         new
@@ -235,6 +243,7 @@ namespace E_Commerce_App.Migrations
                             Description = "Sturdy stand to hold two monitors for multitasking",
                             Name = "Dual Monitor Stand",
                             Price = 89m,
+                            ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/vari-2-monitor_48003_silver_iso.jpg",
                             StockQuantity = 10
                         });
                 });

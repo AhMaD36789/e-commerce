@@ -1,4 +1,5 @@
 ﻿using E_Commerce_App.Models;
+using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,9 +9,11 @@ namespace E_Commerce_App.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IAddImageToCloud _addImageToCloud;
+        public HomeController(ILogger<HomeController> logger, IAddImageToCloud add)
         {
             _logger = logger;
+            _addImageToCloud = add;
         }
 
         public IActionResult Index()

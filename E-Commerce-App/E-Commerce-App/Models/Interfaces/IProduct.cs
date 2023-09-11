@@ -2,7 +2,7 @@
 {
     public interface IProduct
     {
-        Task<Product> AddNewProduct(Product productDTO);
+        Task<Product> AddNewProduct(IFormFile file, Product productDTO);
         Task<Product> GetProductById(int productID);
         Task<List<Product>> GetAllProducts();
         Task<List<Product>> GetProductsByCategory(int categoryID);

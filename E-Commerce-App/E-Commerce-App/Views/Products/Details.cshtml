@@ -8,9 +8,19 @@
 
 <div class="d-flex justify-content-center align-items-center h-100 my-4">
     <div class="card text-dark" style="width: 400px;">
-        <div class="card-body">
+        <div class="card-body" >
             <h4>Product Details</h4>
             <hr />
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ProductImage)
+                    </dt>
+                    <dd>
+                        <img src="@Model.ProductImage" alt="Product Image" style="width: 250px;" />
+                    </dd>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12 mb-2">
                     <dt>
@@ -48,16 +58,6 @@
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.StockQuantity)
-                    </dd>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 mb-2">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProductImage)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.ProductImage)
                     </dd>
                 </div>
             </div>
