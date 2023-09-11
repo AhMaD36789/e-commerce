@@ -19,6 +19,7 @@ namespace E_Commerce_App.Models
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
         public string? ProductImage { get; set; }
+
         //public byte[] ProductImage { get; set; }
 
         // Navigation property 

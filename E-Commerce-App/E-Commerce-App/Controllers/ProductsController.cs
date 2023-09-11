@@ -11,11 +11,13 @@ namespace E_Commerce_App.Controllers
     {
         private readonly StoreDbContext _context;
         private readonly IProduct _product;
+        private readonly IAddImageToCloud _addImageToCloud;
 
-        public ProductsController(StoreDbContext context, IProduct product)
+        public ProductsController(StoreDbContext context, IProduct product, IAddImageToCloud addImageToCloud)
         {
             _context = context;
             _product = product;
+            _addImageToCloud = addImageToCloud;
         }
 
         // GET: Products
@@ -66,11 +68,12 @@ namespace E_Commerce_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product)
+        public async Task<IActionResult> Create(IFormFile file, [Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product)
         {
             if (ModelState.IsValid)
             {
-                await _product.AddNewProduct(product);
+                await _addImageToCloud.UploadProductImage(file, product);
+                await _product.AddNewProduct(file, product);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
@@ -78,7 +81,7 @@ namespace E_Commerce_App.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, IFormFile file)
         {
             if (id == null || _context.Products == null)
             {
@@ -99,7 +102,7 @@ namespace E_Commerce_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product, IFormFile file)
         {
             if (id != product.ProductId)
             {
