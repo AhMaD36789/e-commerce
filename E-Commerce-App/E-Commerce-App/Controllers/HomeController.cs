@@ -1,12 +1,14 @@
 ﻿using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace E_Commerce_App.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly ILogger<HomeController> _logger;
 
         private readonly IAddImageToCloud _addImageToCloud;
@@ -31,5 +33,8 @@ namespace E_Commerce_App.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+       
+
     }
 }

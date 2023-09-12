@@ -170,5 +170,14 @@ namespace E_Commerce_App.Controllers
         {
             return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> Search(string query)
+        {
+            var products = await _context.Products
+                .Where(p => p.Name.Contains(query))
+                .ToListAsync();
+
+            return View(products);
+        }
     }
 }
