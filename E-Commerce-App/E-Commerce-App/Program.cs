@@ -1,6 +1,8 @@
 using E_Commerce_App.Data;
+using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
 using E_Commerce_App.Models.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_App
@@ -16,14 +18,31 @@ namespace E_Commerce_App
 
             builder.Services.AddTransient<ICategory, CategoryServices>();
             builder.Services.AddTransient<IProduct, ProductServices>();
+            builder.Services.AddTransient<IAddImageToCloud, AddImageService>();
+            builder.Services.AddScoped<JWTTokenService>();
 
-
-            builder.Services.AddControllers();
+            // builder.Services.AddControllers();
             string connString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services
                 .AddDbContext<StoreDbContext>
                 (opions => opions.UseSqlServer(connString));
 
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<StoreDbContext>();
+
+            builder.Services.AddTransient<IUserService, IdentityUserService>();
+
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Auth/Index";
+            });
+
+            builder.Services.AddAuthentication();
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
@@ -35,11 +54,13 @@ namespace E_Commerce_App
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

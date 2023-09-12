@@ -3,14 +3,11 @@
     "",
     "\\E-Commerce-App",
     "\\E-Commerce-App\\E-Commerce-App",
-    "\\E-Commerce-App\\E-Commerce-App\\Controllers",
+    "\\E-Commerce-App\\E-Commerce-App\\Data",
     "\\E-Commerce-App\\E-Commerce-App\\Models",
-    "\\E-Commerce-App\\E-Commerce-App\\Models\\Interfaces",
     "\\E-Commerce-App\\E-Commerce-App\\Models\\Services",
-    "\\E-Commerce-App\\E-Commerce-App\\Views",
-    "\\E-Commerce-App\\E-Commerce-App\\Views\\Products",
-    "\\E-Commerce-App\\E-Commerce-App\\Views\\Shared"
+    "\\E-Commerce-App\\E-Commerce-App\\Views"
   ],
-  "SelectedNode": "\\E-Commerce-App\\E-Commerce-App\\Views\\Products\\Edit.cshtml",
+  "SelectedNode": "\\E-Commerce-App\\E-Commerce-App\\Data\\StoreDbContext.cs",
   "PreviewInSolutionExplorer": false
 }
