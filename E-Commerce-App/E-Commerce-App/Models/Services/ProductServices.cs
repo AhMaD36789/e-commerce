@@ -52,9 +52,12 @@ namespace E_Commerce_App.Models.Services
             return newProduct;
         }
 
-        public Task<Product> UpdateProduct(int Id, Product productDTO)
+        public async Task<Product> UpdateProduct(int Id, Product product)
         {
-            throw new NotImplementedException();
+
+            _product.Update(product);
+            await _product.SaveChangesAsync();
+            return product;
         }
     }
 }

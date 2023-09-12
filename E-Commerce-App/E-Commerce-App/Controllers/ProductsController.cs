@@ -12,12 +12,14 @@ namespace E_Commerce_App.Controllers
         private readonly StoreDbContext _context;
         private readonly IProduct _product;
         private readonly IAddImageToCloud _addImageToCloud;
+        private readonly ICategory _category;
 
-        public ProductsController(StoreDbContext context, IProduct product, IAddImageToCloud addImageToCloud)
+        public ProductsController(StoreDbContext context, IProduct product, IAddImageToCloud addImageToCloud, ICategory category)
         {
             _context = context;
             _product = product;
             _addImageToCloud = addImageToCloud;
+            _category = category;
         }
 
         // GET: Products
@@ -81,40 +83,62 @@ namespace E_Commerce_App.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id, IFormFile file)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            //var product = await _context.Products.FindAsync(id);
+            var product = await _product.GetProductById(id);
             if (product == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(await _category.GetAllCategories(), "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
 
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product, IFormFile file)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile file)
         {
             if (id != product.ProductId)
             {
                 return NotFound();
             }
 
+            var oldProduct = await _product.GetProductById(id);
+
+            if (file != null)
+            {
+                // If a new file is uploaded, update the ProductImage property
+                oldProduct = await _addImageToCloud.UploadProductImage(file, oldProduct);
+            }
+            else
+                ModelState.Remove("file");
+
+            // Update the rest of the properties
+            oldProduct.CategoryId = product.CategoryId;
+            oldProduct.Name = product.Name;
+            oldProduct.Description = product.Description;
+            oldProduct.Price = product.Price;
+            oldProduct.StockQuantity = product.StockQuantity;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    // Detach the oldProduct entity
+                    _context.Entry(oldProduct).State = EntityState.Detached;
+
+                    // Update the product entity
+                    await _product.UpdateProduct(id, oldProduct);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -128,9 +152,8 @@ namespace E_Commerce_App.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(await _category.GetAllCategories(), "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
         }
 

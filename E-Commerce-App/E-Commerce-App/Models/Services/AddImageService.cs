@@ -14,6 +14,7 @@ namespace E_Commerce_App.Models.Services
         }
         public async Task<Product> UploadProductImage(IFormFile file, Product product)
         {
+
             BlobContainerClient blobContainerClient =
                 new BlobContainerClient
                 (_configuration.GetConnectionString("StorageAccount"), "productsimages");
