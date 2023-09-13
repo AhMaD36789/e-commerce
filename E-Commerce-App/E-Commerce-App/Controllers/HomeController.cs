@@ -1,4 +1,5 @@
 ﻿using E_Commerce_App.Models;
+using E_Commerce_App.Models.DTOs;
 using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +21,17 @@ namespace E_Commerce_App.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                var model = new LoginDTO { UserName = User.Identity.Name };
+                return View(model);
+            }
+            else
+            {
+                return View();
+            }
         }
+
 
         public IActionResult Privacy()
         {
