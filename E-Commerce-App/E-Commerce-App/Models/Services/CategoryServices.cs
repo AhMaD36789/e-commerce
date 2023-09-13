@@ -12,20 +12,15 @@ public class CategoryServices : ICategory
         _context = context;
     }
 
-    public async Task<Category> CreateNewCategory(Category categoryDTO)
+    public async Task<Category> CreateNewCategory(Category category)
     {
-        var category = new Category
-        {
-            Name = categoryDTO.Name
-        };
-
         _context.Categories.Add(category);
 
         await _context.SaveChangesAsync();
 
-        categoryDTO.CategoryId = category.CategoryId;
+        category.CategoryId = category.CategoryId;
 
-        return categoryDTO;
+        return category;
     }
 
     public async Task DeleteCategory(int Id)
@@ -68,6 +63,8 @@ public class CategoryServices : ICategory
         }
 
         category.Name = categoryDTO.Name;
+        if (categoryDTO.imgURL != null)
+            category.imgURL = categoryDTO.imgURL;
 
         _context.Categories.Update(category);
 

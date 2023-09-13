@@ -57,7 +57,8 @@ namespace E_Commerce_App.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    imgURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -206,12 +207,12 @@ namespace E_Commerce_App.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "Name" },
+                columns: new[] { "CategoryId", "Name", "imgURL" },
                 values: new object[,]
                 {
-                    { 1, "Laptops" },
-                    { 2, "Accessories" },
-                    { 3, "Screens" }
+                    { 1, "Laptops", "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/cat laptops.png" },
+                    { 2, "Accessories", "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/istockphoto-1267943701-170667a.webp" },
+                    { 3, "Screens", "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/cat screen.jpg" }
                 });
 
             migrationBuilder.InsertData(

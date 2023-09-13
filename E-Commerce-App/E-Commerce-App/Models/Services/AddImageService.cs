@@ -36,5 +36,30 @@ namespace E_Commerce_App.Models.Services
             product.ProductImage = blobClient.Uri.ToString();
             return product;
         }
+
+        public async Task<Category> UploadCategoryImage(IFormFile file, Category category)
+        {
+
+            BlobContainerClient blobContainerClient =
+                new BlobContainerClient
+                (_configuration.GetConnectionString("StorageAccount"), "categoriesimages");
+
+            await blobContainerClient.CreateIfNotExistsAsync();
+
+            BlobClient blobClient = blobContainerClient.GetBlobClient(file.FileName);
+
+            using var filestream = file.OpenReadStream();
+
+            BlobUploadOptions blobUploadOptions = new BlobUploadOptions
+            {
+                HttpHeaders = new BlobHttpHeaders { ContentType = file.ContentType }
+            };
+
+            if (!blobClient.Exists())
+                await blobClient.UploadAsync(filestream, blobUploadOptions);
+
+            category.imgURL = blobClient.Uri.ToString();
+            return category;
+        }
     }
 }

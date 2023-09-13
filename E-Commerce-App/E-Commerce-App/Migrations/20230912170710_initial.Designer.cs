@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce_App.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20230911181902_initial")]
+    [Migration("20230912170710_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -102,6 +102,9 @@ namespace E_Commerce_App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("imgURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -110,17 +113,20 @@ namespace E_Commerce_App.Migrations
                         new
                         {
                             CategoryId = 1,
-                            Name = "Laptops"
+                            Name = "Laptops",
+                            imgURL = "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/cat laptops.png"
                         },
                         new
                         {
                             CategoryId = 2,
-                            Name = "Accessories"
+                            Name = "Accessories",
+                            imgURL = "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/istockphoto-1267943701-170667a.webp"
                         },
                         new
                         {
                             CategoryId = 3,
-                            Name = "Screens"
+                            Name = "Screens",
+                            imgURL = "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/cat screen.jpg"
                         });
                 });
 
