@@ -6,47 +6,47 @@ namespace E_Commerce_App.Models.Services
 {
     public class ProductServices : IProduct
     {
-        private readonly StoreDbContext _product;
+        private readonly StoreDbContext _context;
         public ProductServices(StoreDbContext db)
         {
-            _product = db;
+            _context = db;
         }
 
         public async Task<Product> AddNewProduct(IFormFile file, Product product)
         {
-            _product.Add(product);
-            await _product.SaveChangesAsync();
-            
+            _context.Add(product);
+            await _context.SaveChangesAsync();
+
             return product;
         }
 
         public async Task DeleteProduct(int Id)
         {
-            var product = await _product.Products.FindAsync(Id);
+            var product = await _context.Products.FindAsync(Id);
             if (product == null)
                 throw new KeyNotFoundException($"Product with id {Id} not found.");
-            _product.Products.Remove(product);
-            await _product.SaveChangesAsync();
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
 
         }
 
         public async Task<List<Product>> GetAllProducts()
         {
-            var newProduct = await _product.Products.ToListAsync();
+            var newProduct = await _context.Products.ToListAsync();
 
             return newProduct;
         }
 
         public async Task<Product> GetProductById(int productID)
         {
-            var newProduct = await _product.Products.FirstOrDefaultAsync(c => c.ProductId == productID);
+            var newProduct = await _context.Products.FirstOrDefaultAsync(c => c.ProductId == productID);
 
             return newProduct;
         }
 
         public async Task<List<Product>> GetProductsByCategory(int categoryID)
         {
-            var newProduct = await _product.Products
+            var newProduct = await _context.Products
                 .Where(id => id.CategoryId == categoryID)
                 .ToListAsync();
 
@@ -56,8 +56,8 @@ namespace E_Commerce_App.Models.Services
         public async Task<Product> UpdateProduct(int Id, Product product)
         {
 
-            _product.Update(product);
-            await _product.SaveChangesAsync();
+            _context.Update(product);
+            await _context.SaveChangesAsync();
             return product;
         }
     }

@@ -14,9 +14,9 @@
     {
         <div class="col-md-4 mb-4 text-black">
             <div class="card">
-                <img src="https://pngimg.com/uploads/laptop/laptop_PNG101778.png" class="card-img-top" alt="@item.Name">
 
                 <div class="card-body">
+                <img src="@item.imgURL" class="card-img-top" alt="@item.Name">
                     <h5 class="card-title">@item.Name</h5>
                     <a href="@Url.Action("Edit", new { id = item.CategoryId })" class="btn btn-primary">Edit</a>
                     <a href="@Url.Action("CategoryDetails", new { categoryID = item.CategoryId })" class="btn btn-info">Details</a>
