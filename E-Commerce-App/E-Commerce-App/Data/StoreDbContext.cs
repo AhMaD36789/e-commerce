@@ -27,18 +27,21 @@ namespace E_Commerce_App.Data
                 {
                     CategoryId = 1,
                     Name = "Laptops",
+                    imgURL = "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/cat laptops.png"
                 },
                  new Category
                  {
                      CategoryId = 2,
                      Name = "Accessories",
+                     imgURL = "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/istockphoto-1267943701-170667a.webp"
                  },
                  new Category
                  {
                      CategoryId = 3,
                      Name = "Screens",
+                     imgURL = "https://lab29ecommerceimages.blob.core.windows.net/categoriesimages/cat screen.jpg"
                  }
-                );
+                ); ;
             modelBuilder.Entity<Product>().HasData(
                 new List<Product>
                     {

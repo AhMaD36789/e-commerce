@@ -72,9 +72,15 @@ namespace E_Commerce_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IFormFile file, [Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product)
         {
+            if (file != null)
+                await _addImageToCloud.UploadProductImage(file, product);
+            else
+            {
+                ModelState.Remove("file");
+                product.ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/projectimages/default-image.jpg";
+            }
             if (ModelState.IsValid)
             {
-                await _addImageToCloud.UploadProductImage(file, product);
                 await _product.AddNewProduct(file, product);
                 return RedirectToAction(nameof(Index));
             }
@@ -90,7 +96,6 @@ namespace E_Commerce_App.Controllers
                 return NotFound();
             }
 
-            //var product = await _context.Products.FindAsync(id);
             var product = await _product.GetProductById(id);
             if (product == null)
             {
@@ -121,8 +126,10 @@ namespace E_Commerce_App.Controllers
                 oldProduct = await _addImageToCloud.UploadProductImage(file, oldProduct);
             }
             else
+            {
+                product.ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/projectimages/default-image.jpg";
                 ModelState.Remove("file");
-
+            }
             // Update the rest of the properties
             oldProduct.CategoryId = product.CategoryId;
             oldProduct.Name = product.Name;

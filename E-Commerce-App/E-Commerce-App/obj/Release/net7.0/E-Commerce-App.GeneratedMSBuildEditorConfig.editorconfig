@@ -9,109 +9,113 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = E_Commerce_App
 build_property.RootNamespace = E_Commerce_App
-build_property.ProjectDir = C:\Users\ahmad\source\repos\E-Commerce-App\E-Commerce-App\E-Commerce-App\
+build_property.ProjectDir = C:\Users\ahmad\Source\Repos\E-Commerce-App\E-Commerce-App\E-Commerce-App\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\ahmad\source\repos\E-Commerce-App\E-Commerce-App\E-Commerce-App
+build_property.MSBuildProjectDirectory = C:\Users\ahmad\Source\Repos\E-Commerce-App\E-Commerce-App\E-Commerce-App
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Auth/Index.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Auth/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Auth/SignUp.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Auth/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/CategoryDetails.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/CategoryDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDYXRlZ29yeURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Create.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Delete.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Details.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Edit.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/GetCategories.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/GetCategories.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xHZXRDYXRlZ29yaWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Index.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/_CategoryFormPartial.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Categories/_CategoryFormPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xfQ2F0ZWdvcnlGb3JtUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Home/Index.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Home/Privacy.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Create.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Delete.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Details.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Edit.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/GetProducts.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/GetProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcR2V0UHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Index.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/ProductDetails.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/ProductDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcUHJvZHVjdERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/_ProductsFormPartial.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcU2VhcmNoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Products/_ProductsFormPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcX1Byb2R1Y3RzRm9ybVBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Shared/Error.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/_ViewImports.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/_ViewStart.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmad/source/repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Shared/_Layout.cshtml]
+[C:/Users/ahmad/Source/Repos/E-Commerce-App/E-Commerce-App/E-Commerce-App/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fof9rf0gub

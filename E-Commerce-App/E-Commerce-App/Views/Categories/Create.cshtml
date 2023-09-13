@@ -12,12 +12,16 @@
         <div class="card-body">
             <h4>Create Category</h4>
             <hr />
-            <form method="post" asp-controller="Categories" asp-action="Create">
+            <form method="post" asp-controller="Categories" asp-action="Create" enctype="multipart/form-data" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="file">Upload Image:</label>
+                    <input type="file" id="file" name="file">
                 </div>
                 <div class="form-group text-center m-3">
                     <input type="submit" value="Create" class="btn btn-success m-3" />

@@ -1,4 +1,5 @@
-﻿using E_Commerce_App.Models;
+﻿using E_Commerce_App.Data;
+using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
 using E_Commerce_App.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -6,13 +7,17 @@ using Microsoft.EntityFrameworkCore;
 
 public class CategoriesController : Controller
 {
+    private readonly StoreDbContext _context;
     private readonly ICategory _category;
     private readonly IProduct _product;
+    private readonly IAddImageToCloud _addImageToCloud;
 
-    public CategoriesController(ICategory category, IProduct product)
+    public CategoriesController(ICategory category, IProduct product, IAddImageToCloud addImageToCloud, StoreDbContext context)
     {
         _category = category;
         _product = product;
+        _addImageToCloud = addImageToCloud;
+        _context = context;
     }
 
     // GET: Categories1
@@ -65,8 +70,16 @@ public class CategoriesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("CategoryId,Name")] Category category)
+    public async Task<IActionResult> Create([Bind("CategoryId,Name,imgURL")] Category category, IFormFile file)
     {
+        if (file != null)
+            await _addImageToCloud.UploadCategoryImage(file, category);
+        else
+        {
+            ModelState.Remove("file");
+            category.imgURL = "https://lab29ecommerceimages.blob.core.windows.net/projectimages/default-image.jpg";
+        }
+
         if (ModelState.IsValid)
         {
             await _category.CreateNewCategory(category);
@@ -93,11 +106,22 @@ public class CategoriesController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name")] Category category)
+    public async Task<IActionResult> Edit(int id, Category category, IFormFile file)
     {
         if (id != category.CategoryId)
         {
             return NotFound();
+        }
+
+        var oldCategory = await _category.GetCategoryById(id);
+
+        if (file != null)
+        {
+            await _addImageToCloud.UploadCategoryImage(file, category);
+        }
+        else
+        {
+            ModelState.Remove("file");
         }
 
         if (ModelState.IsValid)
@@ -121,6 +145,7 @@ public class CategoriesController : Controller
         }
         return View(category);
     }
+
 
     // GET: Categories1/Delete/5
     public async Task<IActionResult> Delete(int? id)

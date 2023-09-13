@@ -8,7 +8,7 @@
     "\\E-Commerce-App\\E-Commerce-App\\Models",
     "\\E-Commerce-App\\E-Commerce-App\\Models\\Services",
     "\\E-Commerce-App\\E-Commerce-App\\Views",
-    "\\E-Commerce-App\\E-Commerce-App\\Views\\Products"
+    "\\E-Commerce-App\\E-Commerce-App\\Views\\Categories"
   ],
   "SelectedNode": "\\E-Commerce-App\\E-Commerce-App\\Controllers\\ProductsController.cs",
   "PreviewInSolutionExplorer": false
