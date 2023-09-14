@@ -55,8 +55,17 @@ namespace E_Commerce_App.Models.Services
 
         public async Task<Product> UpdateProduct(int Id, Product product)
         {
+            var newProduct = await _context.Products.FindAsync(Id);
+            newProduct.ProductId = product.ProductId;
+            newProduct.Name = product.Name;
+            newProduct.Description = product.Description;
+            newProduct.Price = product.Price;
+            newProduct.StockQuantity = product.StockQuantity;
+            newProduct.CategoryId = product.CategoryId;
+            if (product.ProductImage != null)
+                newProduct.ProductImage = product.ProductImage;
 
-            _context.Update(product);
+            _context.Update(newProduct);
             await _context.SaveChangesAsync();
             return product;
         }
