@@ -12536,11 +12536,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ahmad\\Source\\Repos\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
+      "projectUniqueName": "C:\\Users\\ahmad\\source\\repos\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
       "projectName": "E-Commerce-App",
-      "projectPath": "C:\\Users\\ahmad\\Source\\Repos\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
+      "projectPath": "C:\\Users\\ahmad\\source\\repos\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App.csproj",
       "packagesPath": "C:\\Users\\ahmad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ahmad\\Source\\Repos\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\obj\\",
+      "outputPath": "C:\\Users\\ahmad\\source\\repos\\E-Commerce-App\\E-Commerce-App\\E-Commerce-App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",

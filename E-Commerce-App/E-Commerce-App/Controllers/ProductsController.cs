@@ -4,7 +4,6 @@ using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
 namespace E_Commerce_App.Controllers
 {
     public class ProductsController : Controller
@@ -91,6 +90,9 @@ namespace E_Commerce_App.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            TempData["referrerUrl"] = Request.Headers["Referer"].ToString();
+
+
             if (id == null || _context.Products == null)
             {
                 return NotFound();
@@ -123,29 +125,18 @@ namespace E_Commerce_App.Controllers
             if (file != null)
             {
                 // If a new file is uploaded, update the ProductImage property
-                oldProduct = await _addImageToCloud.UploadProductImage(file, oldProduct);
+                oldProduct = await _addImageToCloud.UploadProductImage(file, product);
             }
             else
             {
-                product.ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/projectimages/default-image.jpg";
                 ModelState.Remove("file");
             }
-            // Update the rest of the properties
-            oldProduct.CategoryId = product.CategoryId;
-            oldProduct.Name = product.Name;
-            oldProduct.Description = product.Description;
-            oldProduct.Price = product.Price;
-            oldProduct.StockQuantity = product.StockQuantity;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Detach the oldProduct entity
-                    _context.Entry(oldProduct).State = EntityState.Detached;
-
-                    // Update the product entity
-                    await _product.UpdateProduct(id, oldProduct);
+                    await _product.UpdateProduct(id, product);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -158,7 +149,8 @@ namespace E_Commerce_App.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                string referrerUrl = TempData["referrerUrl"] as string;
+                return Redirect(referrerUrl);
             }
             ViewData["CategoryId"] = new SelectList(await _category.GetAllCategories(), "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
@@ -167,6 +159,9 @@ namespace E_Commerce_App.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
+
+            TempData["referrerUrl"] = Request.Headers["Referer"].ToString();
+
             if (id == null || _context.Products == null)
             {
                 return NotFound();
@@ -193,7 +188,8 @@ namespace E_Commerce_App.Controllers
 
             await _product.DeleteProduct(id);
 
-            return RedirectToAction(nameof(Index));
+            string referrerUrl = TempData["referrerUrl"] as string;
+            return Redirect(referrerUrl);
         }
 
         private bool ProductExists(int id)
