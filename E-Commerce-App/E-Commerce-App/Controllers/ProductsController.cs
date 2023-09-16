@@ -1,49 +1,75 @@
-﻿using E_Commerce_App.Data;
-using E_Commerce_App.Models;
+﻿using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 namespace E_Commerce_App.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing products and related actions.
+    /// </summary>
     public class ProductsController : Controller
     {
-        private readonly StoreDbContext _context;
         private readonly IProduct _product;
         private readonly IAddImageToCloud _addImageToCloud;
         private readonly ICategory _category;
 
-        public ProductsController(StoreDbContext context, IProduct product, IAddImageToCloud addImageToCloud, ICategory category)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductsController"/> class.
+        /// </summary>
+        /// <param name="context">The database context.</param>
+        /// <param name="product">Product service.</param>
+        /// <param name="addImageToCloud">Image upload service.</param>
+        /// <param name="category">Category service.</param>
+        public ProductsController(IProduct product, IAddImageToCloud addImageToCloud, ICategory category)
         {
-            _context = context;
             _product = product;
             _addImageToCloud = addImageToCloud;
             _category = category;
         }
 
-        // GET: Products
+        /// <summary>
+        /// Displays a list of all products.
+        /// </summary>
+        /// <returns>The product list view.</returns>
         public async Task<IActionResult> Index()
         {
             var returnList = await _product.GetAllProducts();
             return View(returnList);
         }
 
+        /// <summary>
+        /// Displays products based on a category.
+        /// </summary>
+        /// <param name="categoryID">The ID of the category to filter products by.</param>
+        /// <returns>The product list view filtered by category.</returns>
         public async Task<IActionResult> GetProducts(int categoryID)
         {
             var products = await _product.GetProductsByCategory(categoryID);
             return View(products);
         }
+
+        /// <summary>
+        /// Displays product details for a specific product.
+        /// </summary>
+        /// <param name="productID">The ID of the product to display.</param>
+        /// <returns>The product details view.</returns>
         public async Task<IActionResult> ProductDetails(int productID)
         {
             var productDetails = await _product.GetProductById(productID);
             return View(productDetails);
         }
 
-        // GET: Products/Details/5
+        /// <summary>
+        /// Displays details of a specific product.
+        /// </summary>
+        /// <param name="id">The ID of the product to display.</param>
+        /// <returns>The product details view.</returns>
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Products == null)
-
+            if (id == null || await _product.GetAllProducts() == null)
             {
                 return NotFound();
             }
@@ -57,16 +83,24 @@ namespace E_Commerce_App.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
+        /// <summary>
+        /// Displays the create product form.
+        /// </summary>
+        /// <returns>The create product view.</returns>
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
+            ViewData["CategoryId"] = new SelectList(await _category.GetAllCategories(), "CategoryId", "Name");
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Handles the creation of a new product.
+        /// </summary>
+        /// <param name="file">The image file associated with the product.</param>
+        /// <param name="product">The product data to create.</param>
+        /// <returns>Redirects to the product list if successful; otherwise, returns the create product view.</returns>
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IFormFile file, [Bind("ProductId,CategoryId,Name,Description,Price,StockQuantity,ProductImage")] Product product)
@@ -83,17 +117,21 @@ namespace E_Commerce_App.Controllers
                 await _product.AddNewProduct(file, product);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(await _category.GetAllCategories(), "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
         }
 
-        // GET: Products/Edit/5
+        /// <summary>
+        /// Displays the edit product form for a specific product.
+        /// </summary>
+        /// <param name="id">The ID of the product to edit.</param>
+        /// <returns>The edit product view.</returns>
+        [Authorize(Roles = "Editor")]
         public async Task<IActionResult> Edit(int id)
         {
             TempData["referrerUrl"] = Request.Headers["Referer"].ToString();
 
-
-            if (id == null || _context.Products == null)
+            if (id == null || await _product.GetAllProducts() == null)
             {
                 return NotFound();
             }
@@ -107,10 +145,14 @@ namespace E_Commerce_App.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
+        /// <summary>
+        /// Handles the editing of a product.
+        /// </summary>
+        /// <param name="id">The ID of the product to edit.</param>
+        /// <param name="product">The updated product data.</param>
+        /// <param name="file">The updated image file associated with the product.</param>
+        /// <returns>Redirects to the previous page if successful; otherwise, returns the edit product view.</returns>
+        [Authorize(Roles = "Editor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Product product, IFormFile file)
@@ -140,7 +182,7 @@ namespace E_Commerce_App.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductId))
+                    if (await ProductExists(product.ProductId) == false)
                     {
                         return NotFound();
                     }
@@ -156,13 +198,17 @@ namespace E_Commerce_App.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
+        /// <summary>
+        /// Displays the delete product confirmation page.
+        /// </summary>
+        /// <param name="id">The ID of the product to delete.</param>
+        /// <returns>The delete product view.</returns>
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
-
             TempData["referrerUrl"] = Request.Headers["Referer"].ToString();
 
-            if (id == null || _context.Products == null)
+            if (id == null || await _product.GetAllProducts() == null)
             {
                 return NotFound();
             }
@@ -176,14 +222,19 @@ namespace E_Commerce_App.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        /// <summary>
+        /// Handles the deletion of a product.
+        /// </summary>
+        /// <param name="id">The ID of the product to delete.</param>
+        /// <returns>Redirects to the previous page if successful.</returns>
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Products == null)
+            if (await _product.GetAllProducts() == null)
             {
-                return Problem("Entity set 'StoreDbContext.Products'  is null.");
+                return Problem("Entity set 'StoreDbContext.Products' is null.");
             }
 
             await _product.DeleteProduct(id);
@@ -192,16 +243,23 @@ namespace E_Commerce_App.Controllers
             return Redirect(referrerUrl);
         }
 
-        private bool ProductExists(int id)
+        private async Task<bool> ProductExists(int id)
         {
-            return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
+            if (await _product.GetProductById(id) == null)
+            {
+                return false;
+            }
+            return true;
         }
 
+        /// <summary>
+        /// Searches for products based on a query string.
+        /// </summary>
+        /// <param name="query">The search query.</param>
+        /// <returns>The search results view.</returns>
         public async Task<IActionResult> Search(string query)
         {
-            var products = await _context.Products
-                .Where(p => p.Name.Contains(query))
-                .ToListAsync();
+            var products = await _product.Search(query);
 
             return View(products);
         }
