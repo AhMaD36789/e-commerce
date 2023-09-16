@@ -12,10 +12,10 @@
         <a class="btn btn-success" asp-action="Create">Create New</a>
     }
 </p>
-<div class="row text-dark">
+<div class="row text-dark mt-4">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 col-md-6 mb-4 ">
+        <div class="col-lg-3 col-md-6 mb-4 ">
             <div class="card">
                 <img src="@item.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Name" />
                 <div class="card-body">

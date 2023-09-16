@@ -71,12 +71,10 @@ namespace E_Commerce_App.Services
         public async Task<Category> GetCategoryById(int categoryID)
         {
             var category = await _context.Categories.FindAsync(categoryID);
-
             if (category == null)
             {
-                return null;
+                throw new KeyNotFoundException($"Category with id {categoryID} not found.");
             }
-
             return category;
         }
 
@@ -92,7 +90,7 @@ namespace E_Commerce_App.Services
 
             if (category == null)
             {
-                return null;
+                throw new KeyNotFoundException($"Category with id {Id} not found.");
             }
 
             category.Name = categoryDTO.Name;
