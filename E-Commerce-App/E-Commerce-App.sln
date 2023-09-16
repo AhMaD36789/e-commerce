@@ -5,7 +5,12 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce-App", "E-Commerce-App\E-Commerce-App.csproj", "{F3A87A78-273F-4E63-B20F-928026421D65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce-App-Tests", "E-Commerce-App-Tests\E-Commerce-App-Tests.csproj", "{455FCAB9-80D1-4F1C-A562-1AB282A80CDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce-App-Tests", "E-Commerce-App-Tests\E-Commerce-App-Tests.csproj", "{455FCAB9-80D1-4F1C-A562-1AB282A80CDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2EA081BC-7A0A-4E21-B6CD-AD01B7051E97}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
