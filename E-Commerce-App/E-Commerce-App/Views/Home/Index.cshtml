@@ -1,25 +1,12 @@
 ﻿@model E_Commerce_App.Models.DTOs.LoginDTO
 
-
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center text-success">
-    <p class="display-4 fs-1">Welcome 
-        @if(Model != null)
-        {
-            <span class="fs-2" > @Model.UserName </span>
-        }
-        else
-        {
-            <span class="fs-2" >Please Login To See All features</span>
-        }
-        TO</p>
     <div class="container">
         <img src="~/images/logo-01.png" class="img-fluid" style="max-width: 200px; max-height: 200px;" alt="Logo">
     </div>
-    <p class="text-primary">Tech Store</p>
 </div>
 
 
