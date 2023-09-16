@@ -182,3 +182,6 @@ Generated\ Items/
 /E-Commerce-App/E-Commerce-App-Tests/obj/E-Commerce-App-Tests.csproj.nuget.g.props
 /E-Commerce-App/E-Commerce-App-Tests/obj/project.nuget.cache
 /E-Commerce-App/E-Commerce-App-Tests/obj/project.assets.json
+/.vs/slnx.sqlite
+/E-Commerce-App/E-Commerce-App/obj/Release/net7.0/E-Commerce-App.assets.cache
+/E-Commerce-App/E-Commerce-App/obj/Release/net7.0/E-Commerce-App.GeneratedMSBuildEditorConfig.editorconfig
