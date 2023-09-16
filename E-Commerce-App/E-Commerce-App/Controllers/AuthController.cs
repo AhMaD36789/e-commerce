@@ -1,5 +1,7 @@
-﻿using E_Commerce_App.Models.DTOs;
+﻿using E_Commerce_App.Models;
+using E_Commerce_App.Models.DTOs;
 using E_Commerce_App.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Plugins;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -9,10 +11,14 @@ namespace E_Commerce_App.Controllers
     public class AuthController : Controller
     {
         private IUserService userService;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AuthController(IUserService service)
+        public AuthController(IUserService service, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager  )
         {
-            userService = service; ;
+            userService = service; 
+            _userManager = userManager; 
+            _signInManager = signInManager;
         }
         public IActionResult Index()
         {
@@ -55,18 +61,6 @@ namespace E_Commerce_App.Controllers
             }
             else
             {
-                //string jwtToken = user.Token;
-
-                //var cookieOptions = new CookieOptions
-                //{
-                //    HttpOnly = true,
-                //    Secure = true,
-                //    SameSite = SameSiteMode.Strict,
-                //    Expires = DateTime.UtcNow.AddMinutes(60)
-                //};
-
-                //// Set the JWT token in the cookie
-                //Response.Cookies.Append("authToken", jwtToken, cookieOptions);
 
                 TempData["AlertMessage"] = $"Welcome {loginData.UserName} in Tech Pioneers Website :)";
                 return RedirectToAction("Index", "Home");
@@ -75,10 +69,10 @@ namespace E_Commerce_App.Controllers
         // call LogOut service to LogOut then go to home
 
 
-        [HttpPost]
+
         public async Task<IActionResult> LogOut()
         {
-            await userService.LogOut();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }
