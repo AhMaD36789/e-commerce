@@ -127,3 +127,7 @@ Generated\ Items/
 /E-Commerce-App/.vs/E-Commerce-App/v17/.suo
 /E-Commerce-App/.vs/E-Commerce-App/v17/.suo
 /E-Commerce-App/.vs/E-Commerce-App/DesignTimeBuild/.dtbcache.v2
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.csproj.AssemblyReference.cache
+/E-Commerce-App/E-Commerce-App-Tests/obj/Debug/net7.0/E-Commerce-App-Tests.csproj.AssemblyReference.cache
+/E-Commerce-App/E-Commerce-App-Tests/obj/Debug/net7.0/E-Commerce-App-Tests.GeneratedMSBuildEditorConfig.editorconfig
+/E-Commerce-App/E-Commerce-App-Tests/bin/Debug/net7.0/CoverletSourceRootsMapping
