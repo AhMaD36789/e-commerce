@@ -1,0 +1,15 @@
+﻿@model E_Commerce_App.Models.DTOs.LoginDTO
+
+<div class="text-center text-success">
+    <p class="display-4 fs-1">
+        Welcome,
+        @if (Model != null)
+        {
+            <span class="fs-1 fw-bold"> @Model.UserName!</span>
+        }
+        else
+        {
+            <span class="fs-1">Please Login To See All features</span>
+        }
+    </p>
+</div>

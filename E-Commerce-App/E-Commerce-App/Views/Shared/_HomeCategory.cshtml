@@ -1,0 +1,29 @@
+﻿@model IEnumerable<E_Commerce_App.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="row ">
+    <h1 class=".bg-light bg-gradient">Categories</h1>
+    <hr/>
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-3 text-black">
+            <div class="card">
+                <div class="card-body">
+                    <img src="@item.imgURL" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Name">
+                    <h5 class="card-title my-2">@item.Name</h5>
+                    <a asp-controller="Categories" asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Categories" asp-action="CategoryDetails" asp-route-categoryID="@item.CategoryId" class="btn btn-info">Details</a>
+                    <a asp-controller="Categories" asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger">Delete</a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
