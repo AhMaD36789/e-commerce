@@ -18,8 +18,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
-  background-color: #212529;
+    margin-bottom: 60px;
+    background-color: #CBCCCC;
 }
 
 .footer {
@@ -32,3 +32,16 @@ body {
     text-align: center; 
     padding: 15px;
 }
+.nav-link.btn.btn-outline-danger.text-white {
+    font-size: 15px; 
+    padding: 7px 20px; 
+}
+.nav-link.btn.btn-outline-success.text-white {
+    font-size: 15px; 
+    padding: 7px 20px; 
+}
+
+
+
+
+

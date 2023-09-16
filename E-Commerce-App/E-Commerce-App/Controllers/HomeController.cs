@@ -10,26 +10,32 @@ namespace E_Commerce_App.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
-
         private readonly IAddImageToCloud _addImageToCloud;
-        public HomeController(ILogger<HomeController> logger, IAddImageToCloud add)
+        private readonly ICategory _categoryService;
+        public HomeController(ILogger<HomeController> logger, IAddImageToCloud add, ICategory category)
         {
             _logger = logger;
             _addImageToCloud = add;
+            _categoryService = category;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var categories = await _categoryService.GetAllCategories(); 
+
             if (User.Identity.IsAuthenticated)
             {
                 var model = new LoginDTO { UserName = User.Identity.Name };
+                ViewData["Categories"] = categories;
                 return View(model);
             }
             else
             {
+                ViewData["Categories"] = categories;
                 return View();
             }
         }
+
 
 
         public IActionResult Privacy()

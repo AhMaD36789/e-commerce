@@ -3,17 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Tech Store</title>
+    <title>@ViewData["Title"] Tech Pioneers</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/E_Commerce_App.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
             <div class="container-fluid">
-                
-                <a class="navbar-brand text-primary " asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo-01.png" class="img-fluid" style="width: 20px; height: 20px;" alt="Logo">Tech Store</a>
+
+                <a class="navbar-brand text-primary " asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo-01.png" class="img-fluid" style="width: 20px; height: 20px;" alt="Logo"> Tech Pioneers</a>
                 <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,34 +31,41 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
+                        </ul>
+                    <ul class="navbar-nav ml-auto d-flex align-items-center">
+                        <li class="mx-3">
+                            <form class="d-flex align-items-center" asp-area="" asp-controller="Products" asp-action="Search">
+                                <input name="query" class="form-control mx-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                <button type="submit" class="btn btn-outline-primary my-2 my-sm-0 rounded-circle"><i class="fas fa-search"></i></button>
+                            </form>
+                        </li>
+                        <li>
+                            <partial name="_UserProfile"></partial>
+                        </li>
                     </ul>
+
                 </div>
-                <div class=" justify-content-between ">
-                    <form class="d-flex align-items-center" asp-area="" asp-controller="Products" asp-action="Search">
-                        <input name="query" class="form-control mx-2" type="search" placeholder="Search" aria-label="Search">
-                        <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Search</button>
-                    </form>
-                </div>
-                <div>
-                    <partial  name="_UserProfile"></partial>
-    </div>
-                </div>  
+            </div>
         </nav>
     </header>
-    <div class="container-fluid bg-dark  text-light ">
+
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Tech Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
