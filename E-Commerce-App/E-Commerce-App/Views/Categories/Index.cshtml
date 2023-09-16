@@ -12,12 +12,11 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4 mb-4 text-black">
+        <div class="col-lg-4 col-md-6 mb-3 text-black">
             <div class="card">
-
                 <div class="card-body">
-                <img src="@item.imgURL" class="card-img-top" alt="@item.Name">
-                    <h5 class="card-title">@item.Name</h5>
+                    <img src="@item.imgURL" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Name">
+                    <h5 class="card-title my-2">@item.Name</h5>
                     <a href="@Url.Action("Edit", new { id = item.CategoryId })" class="btn btn-primary">Edit</a>
                     <a href="@Url.Action("CategoryDetails", new { categoryID = item.CategoryId })" class="btn btn-info">Details</a>
                     <a href="@Url.Action("Delete", new { id = item.CategoryId })" class="btn btn-danger">Delete</a>
@@ -26,4 +25,5 @@
         </div>
     }
 </div>
+
 
