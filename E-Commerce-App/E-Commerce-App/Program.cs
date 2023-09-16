@@ -2,6 +2,7 @@ using E_Commerce_App.Data;
 using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
 using E_Commerce_App.Models.Services;
+using E_Commerce_App.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
