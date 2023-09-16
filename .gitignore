@@ -185,3 +185,7 @@ Generated\ Items/
 /.vs/slnx.sqlite
 /E-Commerce-App/E-Commerce-App/obj/Release/net7.0/E-Commerce-App.assets.cache
 /E-Commerce-App/E-Commerce-App/obj/Release/net7.0/E-Commerce-App.GeneratedMSBuildEditorConfig.editorconfig
+/.vs/E-Commerce-App/v17/workspaceFileList.bin
+/.vs/VSWorkspaceState.json
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.dll
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.pdb
