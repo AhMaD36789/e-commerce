@@ -7,12 +7,15 @@
 <h1>Products</h1>
 
 <p>
-    <a class="btn btn-success" asp-action="Create">Create New</a>
+    @if (User.IsInRole("Administrator"))
+    {
+        <a class="btn btn-success" asp-action="Create">Create New</a>
+    }
 </p>
-<div class="row text-dark">
+<div class="row text-dark mt-4">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 col-md-6 mb-4 ">
+        <div class="col-lg-3 col-md-6 mb-4 ">
             <div class="card">
                 <img src="@item.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Name" />
                 <div class="card-body">
@@ -21,9 +24,15 @@
                     <p class="card-text"><strong>Price:</strong> @item.Price.ToString("F2") JD</p>
                     <p class="card-text"><strong>Stock Quantity:</strong> @item.StockQuantity</p>
                     <p class="card-text"><strong>Category:</strong> @item.CategoryId</p>
-                    <a href="@Url.Action("Edit", new { id = item.ProductId })" class="btn btn-primary m-2">Edit</a>
+                    @if (User.IsInRole("Editor"))
+                    {
+                        <a href="@Url.Action("Edit", new { id = item.ProductId })" class="btn btn-primary m-2">Edit</a>
+                    }
                     <a href="@Url.Action("Details", new { id = item.ProductId })" class="btn btn-info m-2">Details</a>
-                    <a href="@Url.Action("Delete", new { id = item.ProductId })" class="btn btn-danger m-2">Delete</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a href="@Url.Action("Delete", new { id = item.ProductId })" class="btn btn-danger m-2">Delete</a>
+                    }
                 </div>
             </div>
         </div>

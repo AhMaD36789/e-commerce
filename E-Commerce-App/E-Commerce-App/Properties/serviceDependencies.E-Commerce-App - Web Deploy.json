@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/E-Commerce-App/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsDefaultConnection_0C6719DE8A",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/e-commerce-app-db-server/databases/E-Commerce-App_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DefaultConnection"
+    },
+    "storage1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/E-Commerce-App/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsStorageAccount_C85B37BD1B, /subscriptions/6a3e360c-fed0-4b1c-88b9-7adc892a8226/resourcegroups/E-Commerce-Deployment/providers/Microsoft.Web/sites/E-Commerce-App/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsStorageAccount_E621627540",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/lab29ecommerceimages",
+      "type": "storage.azure",
+      "connectionId": "ConnectionStrings:StorageAccount",
+      "dynamicId": null
+    }
+  }
+}

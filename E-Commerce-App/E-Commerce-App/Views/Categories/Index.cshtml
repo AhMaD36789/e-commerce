@@ -5,25 +5,32 @@
 }
 
 <h1>Categories</h1>
-
+<hr />
 <p>
+    @if (User.IsInRole("Administrator"))
+    {
     <a class="btn btn-success" asp-action="Create" asp-controller="Categories">Create New</a>
+    }
 </p>
-<div class="row">
+<div class="row justify-content-center">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 col-md-6 mb-3 text-black">
+        <div class="col-lg-2 col-md-6 mb-3 text-black">
             <div class="card">
                 <div class="card-body">
                     <img src="@item.imgURL" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Name">
                     <h5 class="card-title my-2">@item.Name</h5>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a href="@Url.Action("Delete", new { id = item.CategoryId })" class="btn btn-danger">Delete</a>
+                    }
+                    @if (User.IsInRole("Editor"))
+                    {
                     <a href="@Url.Action("Edit", new { id = item.CategoryId })" class="btn btn-primary">Edit</a>
+                    }
                     <a href="@Url.Action("CategoryDetails", new { categoryID = item.CategoryId })" class="btn btn-info">Details</a>
-                    <a href="@Url.Action("Delete", new { id = item.CategoryId })" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>
     }
 </div>
-
-
