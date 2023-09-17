@@ -40,6 +40,39 @@ body {
     font-size: 15px; 
     padding: 7px 20px; 
 }
+.card-title a {
+    text-decoration: none;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    background-color: #fff; /* Add a background color to the card */
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        transition: box-shadow 0.3s ease, filter 0.3s ease;
+    }
+
+    .card:hover img {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        filter: brightness(110%); /* Add a glow effect by increasing brightness */
+    }
+
+.card-body {
+    transition: opacity 0.3s ease;
+}
+
+   
+
+
 
 
 
