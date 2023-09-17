@@ -8,7 +8,7 @@
 
 <div class="row ">
     <h1 class=".bg-light bg-gradient">Categories</h1>
-    <hr/>
+    <hr />
     @foreach (var item in Model)
     {
         <div class="col-lg-4 col-md-6 mb-3 text-black">
@@ -20,7 +20,7 @@
                     {
                         <a asp-controller="Categories" asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-primary">Edit</a>
                     }
-                    <a asp-controller="Categories" asp-action="CategoryDetails" asp-route-categoryID="@item.CategoryId" class="btn btn-info">Details</a>
+                    <a asp-controller="Categories" asp-action="CategoryDetails" asp-route-categoryID="@item.CategoryId" class="btn btn-info">See More...</a>
                     @if (User.IsInRole("Administrator"))
                     {
                         <a asp-controller="Categories" asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger">Delete</a>
@@ -31,3 +31,4 @@
         </div>
     }
 </div>
+
