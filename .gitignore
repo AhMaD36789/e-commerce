@@ -189,3 +189,6 @@ Generated\ Items/
 /.vs/VSWorkspaceState.json
 /E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.dll
 /E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/E-Commerce-App.pdb
+/E-Commerce-App/E-Commerce-App-Tests/obj/Debug/net7.0/E-Commerce-App-Tests.csproj.AssemblyReference.cache
+/E-Commerce-App/E-Commerce-App/E-Commerce-App.csproj.user
+/E-Commerce-App/E-Commerce-App/obj/Debug/net7.0/staticwebassets/msbuild.E-Commerce-App.Microsoft.AspNetCore.StaticWebAssets.props

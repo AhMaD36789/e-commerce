@@ -63,9 +63,7 @@ namespace E_Commerce_App.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDTO>> SignUp(RegisterUserDTO register)
         {
-            register.Roles = new List<string>() { "Administrator" };
-            //register.Roles = new List<string>() { "Editor" };
-            //register.Roles = new List<string>() { "Users" };
+            register.Roles = new List<string>() { "Users" };
 
             var user = await userService.Register(register, this.ModelState);
             if (ModelState.IsValid)
