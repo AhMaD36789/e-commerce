@@ -56,9 +56,18 @@
                     <dt>
                         @Html.DisplayNameFor(model => model.StockQuantity)
                     </dt>
+                    @if(Model.StockQuantity == 0)
+                    {
+                        <dd>
+                            Out of stock
+                        </dd>
+                    }
+                    else
+                    {
                     <dd>
                         @Html.DisplayFor(model => model.StockQuantity)
                     </dd>
+                    }
                 </div>
             </div>
             <div class="row">
