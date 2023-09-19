@@ -62,7 +62,7 @@
                         {
                             <a href="@Url.Action("Edit", new { id = item.ProductId })" class="btn btn-primary m-2">Edit</a>
                         }
-                        <a href="@Url.Action("Details", new { id = item.ProductId })" class="btn btn-info m-2">Details</a>
+                        <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info m-2">Details</a>
                         @if (User.IsInRole("Administrator"))
                         {
                             <a href="@Url.Action("Delete", new { id = item.ProductId })" class="btn btn-danger m-2">Delete</a>

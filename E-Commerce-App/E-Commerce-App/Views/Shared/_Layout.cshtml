@@ -8,19 +8,20 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/mdb.min.css">
     <link rel="stylesheet" href="~/E_Commerce_App.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&family=FF+Kava:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
             <div class="container-fluid">
 
                 <a class="navbar-brand text-primary " asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo-01.png" class="img-fluid" style="width: 20px; height: 20px;" alt="Logo"> Tech Pioneers</a>
-                <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <img src="~/images/menu.png" style="width: 20px; height: 20px;" />
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -34,26 +35,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Register/AdminRegister">Admin Register</a>
                         </li>
-                        </ul>
-                    <ul class="navbar-nav ml-auto d-flex align-items-center">
-                        <li class="mx-3">
-                            <form class="d-flex align-items-center" asp-area="" asp-controller="Products" asp-action="Search">
+                    </ul>
+                    <ul class="navbar-nav ml-auto d-flex align-items-end">
+                        <li class="mx-3 my-2 my-md-2">
+                            <form class="d-flex  mb-2 mb-sm-0" asp-area="" asp-controller="Products" asp-action="Search">
                                 <input name="query" class="form-control mx-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
-                                <button type="submit" class="btn btn-outline-primary my-2 my-sm-0 rounded-circle"><i class="fas fa-search"></i></button>
+                                <button type="submit" class="btn btn-outline-primary rounded-circle custom-animation-btn d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-search"></i>
+                                </button>
+
                             </form>
                         </li>
-                        <li>
+                        <li class="mx-3 my-2 my-md-2">
                             <partial name="_UserProfile"></partial>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container-fluid">
-        <main role="main" class="pb-3">
+    <div class="container-fluid main">
+        <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
