@@ -44,7 +44,9 @@ namespace E_Commerce_App
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
                 options.LoginPath = "/Auth/Index";
+
             });
 
             builder.Services.AddAuthentication();
