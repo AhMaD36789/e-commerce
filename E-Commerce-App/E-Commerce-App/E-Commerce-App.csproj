@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Shared\**" />
     <Compile Remove="Views\AdminDashboard\**" />
+    <Content Remove="Shared\**" />
     <Content Remove="Views\AdminDashboard\**" />
+    <EmbeddedResource Remove="Shared\**" />
     <EmbeddedResource Remove="Views\AdminDashboard\**" />
+    <None Remove="Shared\**" />
     <None Remove="Views\AdminDashboard\**" />
   </ItemGroup>
 
@@ -36,10 +40,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="7.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Shared\" />
   </ItemGroup>
 
 </Project>
