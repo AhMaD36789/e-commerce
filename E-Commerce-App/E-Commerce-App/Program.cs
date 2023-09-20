@@ -4,6 +4,7 @@ using E_Commerce_App.Models.Interfaces;
 using E_Commerce_App.Models.Services;
 using E_Commerce_App.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_App
@@ -22,6 +23,8 @@ namespace E_Commerce_App
                     options.HtmlHelperOptions.Html5DateRenderingMode = Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode.Rfc3339;
                 })
                 .AddDataAnnotationsLocalization();
+
+            builder.Services.AddScoped<CartSidebarViewComponent>();
 
             builder.Services.AddTransient<ICategory, CategoryServices>();
             builder.Services.AddTransient<IProduct, ProductServices>();
