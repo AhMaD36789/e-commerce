@@ -33,7 +33,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                                 </li>
-                                
+
                             </ul>
                         </div>
 
@@ -54,7 +54,7 @@
                                        data-mdb-toggle="dropdown"
                                        aria-expanded="false"
                                        style="margin-left: 10px;">
-                                        <i class="fas fa-user fa-lg" style="color: green;"></i> 
+                                        <i class="fas fa-user fa-lg" style="color: green;"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="navbarDropdownMenuAvatar">
@@ -63,7 +63,7 @@
                                         </li>
                                         @if (User.IsInRole("Administrator"))
                                         {
-                                            <li >
+                                            <li>
                                                 <a class="dropdown-item" asp-area="" asp-page="/Register/AdminRegister">Admin Register</a>
                                             </li>
                                         }
@@ -74,19 +74,31 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
+            
         </nav>
     </header>
 
 
     <div class="container-fluid main">
-        <main role="main" class="pb-5">
-            @RenderBody()
-        </main>
+        <div class="row">
+            <div class="col-md-9">
+                <main role="main" class="pb-5">
+                    @RenderBody()
+                </main>
+            </div>
+            @if (Context.Request.Cookies["productIds"] != null)
+            {
+                <div class="col-md-3 border-start border-4 border-success">
+                    @await Component.InvokeAsync("CartSidebar")
+                </div>
+            }
+        </div>
     </div>
+
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
