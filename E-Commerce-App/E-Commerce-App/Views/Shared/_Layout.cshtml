@@ -59,7 +59,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="navbarDropdownMenuAvatar">
                                         <li>
-                                            <a class="dropdown-item" href="#">Cart</a>
+                                            <a class="dropdown-item" asp-controller="Products" asp-action="GetCart">Cart</a>
                                         </li>
                                         @if (User.IsInRole("Administrator"))
                                         {
@@ -74,9 +74,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -100,7 +97,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="~/js/mdb.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
