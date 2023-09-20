@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace E_Commerce_App.Controllers
 {
@@ -262,6 +263,73 @@ namespace E_Commerce_App.Controllers
             var products = await _product.Search(query);
 
             return View(products);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCart()
+        {
+            var productIdsCookie = HttpContext.Request.Cookies["productIds"];
+            if (productIdsCookie != null)
+            {
+                var productIds = JsonConvert.DeserializeObject<List<int>>(productIdsCookie);
+                return ViewComponent("Cart", new { productIds });
+
+            }
+            else
+            {
+                return Content(""); // Return empty content if no product IDs in cookies
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddToCart(int productId)
+        {
+            var productIdsCookie = HttpContext.Request.Cookies["productIds"];
+            List<int> productIds;
+            if (productIdsCookie != null)
+            {
+                productIds = JsonConvert.DeserializeObject<List<int>>(productIdsCookie);
+            }
+            else
+            {
+                productIds = new List<int>();
+            }
+            productIds.Add(productId);
+
+            var options = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(30), // Set expiry to 30 days
+                IsEssential = true
+            };
+
+            HttpContext.Response.Cookies.Append("productIds", JsonConvert.SerializeObject(productIds), options);
+            string referrerUrl = Request.Headers["Referer"].ToString();
+            return Redirect(referrerUrl);
+        }
+
+
+        public IActionResult RemoveFromCart(int productId)
+        {
+            var productIdsCookie = HttpContext.Request.Cookies["productIds"];
+            List<int> productIds;
+            if (productIdsCookie != null)
+            {
+                productIds = JsonConvert.DeserializeObject<List<int>>(productIdsCookie);
+                if (productIds.Contains(productId))
+                {
+                    productIds.Remove(productId);
+
+                    var options = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(30), // Set expiry to 30 days
+                        IsEssential = true
+                    };
+
+                    HttpContext.Response.Cookies.Append("productIds", JsonConvert.SerializeObject(productIds), options);
+                }
+            }
+            string referrerUrl = Request.Headers["Referer"].ToString();
+            return Redirect(referrerUrl);  // Replace with your method
         }
     }
 }
