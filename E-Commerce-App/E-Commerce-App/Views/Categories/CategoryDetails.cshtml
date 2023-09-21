@@ -66,7 +66,6 @@
                             <button type="submit" class="btn btn-info m-2">Add To Cart</button>
                         </form>
 
-
                         @if (User.IsInRole("Administrator"))
                         {
                             <a href="@Url.Action("Delete","Products", new { id = item.ProductId })" class="btn btn-danger m-2">Delete</a>

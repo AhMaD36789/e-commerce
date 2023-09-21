@@ -271,9 +271,7 @@ namespace E_Commerce_App.Controllers
             var productIdsCookie = HttpContext.Request.Cookies["productIds"];
             if (productIdsCookie != null)
             {
-                var productIds = JsonConvert.DeserializeObject<List<int>>(productIdsCookie);
-                return ViewComponent("Cart", new { productIds });
-
+                return ViewComponent("Cart");
             }
             else
             {
@@ -306,7 +304,6 @@ namespace E_Commerce_App.Controllers
             string referrerUrl = Request.Headers["Referer"].ToString();
             return Redirect(referrerUrl);
         }
-
 
         public IActionResult RemoveFromCart(int productId)
         {
