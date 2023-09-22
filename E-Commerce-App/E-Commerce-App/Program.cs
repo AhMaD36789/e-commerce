@@ -4,6 +4,7 @@ using E_Commerce_App.Models.Interfaces;
 using E_Commerce_App.Models.Services;
 using E_Commerce_App.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_App
@@ -15,8 +16,16 @@ namespace E_Commerce_App
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation()
+                .AddViewOptions(options =>
+                {
+                    options.HtmlHelperOptions.ClientValidationEnabled = true;
+                    options.HtmlHelperOptions.Html5DateRenderingMode = Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode.Rfc3339;
+                })
+                .AddDataAnnotationsLocalization();
 
+            builder.Services.AddScoped<CartSidebarViewComponent>();
+            builder.Services.AddScoped<IEmail, EmailService>();
             builder.Services.AddTransient<ICategory, CategoryServices>();
             builder.Services.AddTransient<IProduct, ProductServices>();
             builder.Services.AddTransient<IAddImageToCloud, AddImageService>();
@@ -38,12 +47,15 @@ namespace E_Commerce_App
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
                 options.LoginPath = "/Auth/Index";
+
             });
 
             builder.Services.AddAuthentication();
             builder.Services.AddAuthorization();
+
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -63,6 +75,8 @@ namespace E_Commerce_App
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapRazorPages();
 
             app.MapControllerRoute(
                 name: "default",

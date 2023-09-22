@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using E_Commerce_App.Models;
+﻿using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
-using E_Commerce_App.Models.Services;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
+using E_Commerce_App.Services;
 
 namespace E_Commerce_App_Tests
 {
@@ -48,7 +43,7 @@ namespace E_Commerce_App_Tests
             Assert.Null(deletedCategory);
         }
 
-      
+
 
         [Fact]
         public async Task GetCategoryById_ShouldReturnCorrectCategory()
