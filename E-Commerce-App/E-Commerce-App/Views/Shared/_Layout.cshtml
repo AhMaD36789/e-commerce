@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using E_Commerce_App.Views.Shared;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -37,11 +40,13 @@
                         </div>
                         <div class="col-md-6 col-sm-6 d-flex justify-content-end">
                             <div class="d-flex align-items-center">
-                                <form class="d-flex mb-2 mb-sm-0" asp-area="" asp-controller="Products" asp-action="Search">
-                                    <input name="query" class="form-control mx-1 rounded-pill" type="search" placeholder="Search" aria-label="Search">
-                                    <button type="submit" class="btn btn-outline-primary rounded-circle custom-animation-btn d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                <form class="custom-search-form d-flex mb-sm-0" asp-area="" asp-controller="Products" asp-action="Search">
+                                    <div class="input-group">
+                                        <input name="query" class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                        <button type="submit" class="btn btn-outline-primary rounded-pill ms-1">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 </form>
                                 <div class="dropdown">
                                     <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
@@ -51,17 +56,27 @@
                                        data-mdb-toggle="dropdown"
                                        aria-expanded="false"
                                        style="margin-left: 10px;">
-                                        <i class="fas fa-user fa-lg" style="color: green;"></i>
+                                        <span class="border rounded-circle d-flex justify-content-center align-items-center icon-container bg-light" style="width: 40px; height: 40px;">
+                                            <i class="fas fa-circle-user fa-2x"></i>
+                                        </span>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="navbarDropdownMenuAvatar">
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="Products" asp-action="GetCart">Cart</a>
-                                        </li>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                        @if (signInManager.IsSignedIn(User))
+                                        {
+                                            <li>
+                                                <a class="dropdown-item d-flex justify-content-between" asp-controller="Products" asp-action="GetCart">
+                                                    Cart
+                                                    <i class="fas fa-cart-shopping"></i>
+                                                </a>
+                                            </li>
+                                        }
                                         @if (User.IsInRole("Administrator"))
                                         {
                                             <li>
-                                                <a class="dropdown-item" asp-area="" asp-page="/Register/AdminRegister">Admin Register</a>
+                                                <a class="dropdown-item d-flex justify-content-between" asp-area="" asp-page="/Register/AdminRegister">
+                                                    Admin Register
+                                                    <i class="fas fa-circle-user"></i>
+                                                </a>
                                             </li>
                                         }
                                         <li class="my-2 my-md-2">
@@ -87,34 +102,35 @@
                         @RenderBody()
                     </main>
                 </div>
-                    }else
-                    {
-                    <div class="col-md-12">
+            }
+            else
+            {
+                <div class="col-md-12">
                     <main role="main" class="pb-5">
                         @RenderBody()
                     </main>
                 </div>
-                    }
-                @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
+            }
+            @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
 
-                {
-                    <div class="col-md-3 border-start border-4 border-success">
-                        @await Component.InvokeAsync("CartSidebar")
-                    </div>
-                }
-            </div>
+            {
+                <div class="col-md-3 border-start border-4 border-success">
+                    @await Component.InvokeAsync("CartSidebar")
+                </div>
+            }
         </div>
+    </div>
 
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
 
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="~/js/mdb.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-                @await RenderSectionAsync("Scripts", required: false)
-    </body>
-    </html>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/js/mdb.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

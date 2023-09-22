@@ -99,3 +99,42 @@ body {
     font-family: 'Avenir', 'FF Kava', 'Times New Roman', sans-serif !important;
     font-weight: 600;
 }
+/* Add hover effect for button background color */
+.custom-search-form .btn-outline-primary:hover {
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+
+    /* Add hover effect for the search icon */
+    .custom-search-form .btn-outline-primary:hover i {
+        color: #fff !important;
+    }
+
+
+.user-icon {
+    border: 1px solid #28a745; /* Green border color */
+    border-radius: 50%; /* Rounded border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Set the width and height */
+    height: 40px;
+    transition: border-color 0.3s; /* Add transition for smooth effect */
+}
+
+    .user-icon i {
+        color: green !important;
+        transition: color 0.3s; /* Add transition for smooth effect */
+    }
+
+    .user-icon:hover i {
+        color: #258cfb !important; /* Change to the desired hover color */
+    }
+.icon-container:hover {
+    border-color: #64ca44 !important; /* Change to the color you want on hover */
+}
+
+    .icon-container:hover i {
+        color: green !important; /* Change to the color you want on hover */
+    }
+
