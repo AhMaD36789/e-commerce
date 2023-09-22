@@ -25,7 +25,7 @@ namespace E_Commerce_App
                 .AddDataAnnotationsLocalization();
 
             builder.Services.AddScoped<CartSidebarViewComponent>();
-
+            builder.Services.AddScoped<IEmail, EmailService>();
             builder.Services.AddTransient<ICategory, CategoryServices>();
             builder.Services.AddTransient<IProduct, ProductServices>();
             builder.Services.AddTransient<IAddImageToCloud, AddImageService>();
