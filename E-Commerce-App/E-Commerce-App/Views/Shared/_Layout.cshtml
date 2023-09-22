@@ -33,10 +33,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                                 </li>
-
                             </ul>
                         </div>
-
                         <div class="col-md-6 col-sm-6 d-flex justify-content-end">
                             <div class="d-flex align-items-center">
                                 <form class="d-flex mb-2 mb-sm-0" asp-area="" asp-controller="Products" asp-action="Search">
@@ -45,7 +43,6 @@
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </form>
-
                                 <div class="dropdown">
                                     <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
                                        href="#"
@@ -77,38 +74,47 @@
                     </div>
                 </div>
             </div>
-            
         </nav>
     </header>
 
-
     <div class="container-fluid main">
         <div class="row">
-            <div class="col-md-9">
-                <main role="main" class="pb-5">
-                    @RenderBody()
-                </main>
-            </div>
-            @if (Context.Request.Cookies["productIds"] != null)
+            @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
+
             {
-                <div class="col-md-3 border-start border-4 border-success">
-                    @await Component.InvokeAsync("CartSidebar")
+                <div class="col-md-9">
+                    <main role="main" class="pb-5">
+                        @RenderBody()
+                    </main>
                 </div>
-            }
+                    }else
+                    {
+                    <div class="col-md-12">
+                    <main role="main" class="pb-5">
+                        @RenderBody()
+                    </main>
+                </div>
+                    }
+                @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
+
+                {
+                    <div class="col-md-3 border-start border-4 border-success">
+                        @await Component.InvokeAsync("CartSidebar")
+                    </div>
+                }
+            </div>
         </div>
-    </div>
 
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="~/js/mdb.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="~/js/mdb.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+                @await RenderSectionAsync("Scripts", required: false)
+    </body>
+    </html>

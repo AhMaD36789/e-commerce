@@ -2,8 +2,6 @@
 using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class CartSidebarViewComponent : ViewComponent
 {
