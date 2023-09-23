@@ -64,7 +64,7 @@
                                         @if (signInManager.IsSignedIn(User))
                                         {
                                             <li>
-                                                <a class="dropdown-item d-flex justify-content-between" asp-controller="Products" asp-action="GetCart">
+                                                <a class="dropdown-item d-flex justify-content-between" asp-controller="Cart" asp-action="Index">
                                                     Cart
                                                     <i class="fas fa-cart-shopping"></i>
                                                 </a>
@@ -94,7 +94,7 @@
 
     <div class="container-fluid main">
         <div class="row">
-            @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
+            @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "{}")
 
             {
                 <div class="col-md-9">
@@ -111,7 +111,7 @@
                     </main>
                 </div>
             }
-            @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
+            @if (!SharedFunctions.isNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "{}")
 
             {
                 <div class="col-md-3 border-start border-4 border-success">
