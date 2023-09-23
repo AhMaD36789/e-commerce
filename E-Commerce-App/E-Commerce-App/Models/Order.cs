@@ -13,5 +13,7 @@ namespace E_Commerce_App.Models
 
         [Display(Name = "Total Price")]
         public decimal TotalPrice { get; set; }
+
+        public List<Product>? Products { get; set; }
     }
 }

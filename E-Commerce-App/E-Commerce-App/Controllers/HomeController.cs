@@ -3,6 +3,7 @@ using E_Commerce_App.Models.DTOs;
 using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace E_Commerce_App.Controllers
 {
@@ -14,6 +15,8 @@ namespace E_Commerce_App.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IAddImageToCloud _addImageToCloud;
         private readonly ICategory _categoryService;
+        private readonly IEmail _email;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeController"/> class.
@@ -21,11 +24,12 @@ namespace E_Commerce_App.Controllers
         /// <param name="logger">The logger.</param>
         /// <param name="add">Image upload service.</param>
         /// <param name="category">Category service.</param>
-        public HomeController(ILogger<HomeController> logger, IAddImageToCloud add, ICategory category)
+        public HomeController(ILogger<HomeController> logger, IAddImageToCloud add, ICategory category, IEmail email)
         {
             _logger = logger;
             _addImageToCloud = add;
             _categoryService = category;
+            _email = email;
         }
 
         /// <summary>
@@ -47,6 +51,15 @@ namespace E_Commerce_App.Controllers
                 ViewData["Categories"] = categories;
                 return View();
             }
+        }
+
+        public async Task<IActionResult> SendEmail()
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            await _email.SendEmail(userEmail);
+
+            string referrerUrl = TempData["referrerUrl"] as string;
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
