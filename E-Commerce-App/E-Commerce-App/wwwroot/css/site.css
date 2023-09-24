@@ -60,6 +60,17 @@ body {
     background-color: #fff; /* Add a background color to the card */
 }
 
+.card.sideBarCard 
+{
+    transition: none !important;
+}
+
+.card.sideBarCard:hover
+{
+            transform: scale(1.00);
+
+}
+
     .card:hover {
         transform: scale(1.05);
     }
