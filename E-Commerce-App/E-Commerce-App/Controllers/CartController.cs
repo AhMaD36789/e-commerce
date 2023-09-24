@@ -105,13 +105,8 @@ namespace E_Commerce_App.Controllers
                     {
                         productQuantities[productId] -= 1;
                     }
-                    if (changeQuantity == "-1")
-                    {
-                        productQuantities[productId] -= 1;
-                    }
                     else if (changeQuantity == "+1")
                     {
-
                         var product = await _product.GetProductById(productId);
 
                         if (productQuantities[productId] < product.StockQuantity)
@@ -143,7 +138,6 @@ namespace E_Commerce_App.Controllers
 
                     else
                     {
-
                         int newQuantity;
                         if (int.TryParse(changeQuantity, out newQuantity))
                         {

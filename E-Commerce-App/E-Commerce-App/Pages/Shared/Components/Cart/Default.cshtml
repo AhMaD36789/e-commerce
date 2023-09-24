@@ -7,7 +7,7 @@
 
 <h1>Cart Details</h1>
 <hr />
-<a class="btn btn-primary px-3 m-3" asp-action="SendEmail" asp-controller="Home">Checkout</a>
+<a class="btn btn-primary px-3 m-3" asp-page="/SendEmail/SendEmail">Checkout</a>
 <div class="row">
     @if (Model.Any())
     {
