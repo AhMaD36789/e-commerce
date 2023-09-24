@@ -1,28 +1,29 @@
 ﻿@model List<CartItem>
 
-<div class="sidebar  text-center" style="height:100vh; right:0; position:fixed;  overflow-y:auto">
+<div class="sidebar  text-center" style="height:86vh; right:0; position:sticky;  overflow-y:auto">
     <h2>Cart</h2>
     <a asp-controller="Cart" asp-action="Index" class="btn btn-primary my-2">View Cart</a>
     <div class="col-md-12">
         <div class="d-flex flex-column align-items-center justify-content-center">
             @foreach (var item in Model)
             {
-                <div class="card col-11 my-2">
+                <div class="card sideBarCard col-11 my-2 ">
                     <div class="p-3">
                         <p class="lead fw-bold mb-0">@item.Product.Name</p>
                     </div>
-                    <img src="@item.Product.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Product.Name" />
+                    <img src="@item.Product.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 120px;" alt="@item.Product.Name" />
 
                     <div class="card-body text-dark">
-                        <div class="mb-3 d-flex justify-content-between">
+                        <div class="d-flex justify-content-between">
                             <div>
                                 <p class="fs-6 m-0">Price:@item.Product.Price.ToString("0.00")JD</p>
                             </div>
+                        </div>
+                            <div class="mb-3 d-flex justify-content-between">
                             <div>
                                 <p class="fs-6 m-0">In stock: @item.Product.StockQuantity</p>
                             </div>
-
-                        </div>
+                            </div>
 
                         <div class="mb-3 text-dark">
                             <form asp-action="UpdateCart" asp-controller="Cart" method="post">
@@ -31,9 +32,9 @@
                                     <button type="submit" name="changeQuantity" value="-1" class="btn btn-primary px-3 me-2">
                                         <i class="fas fa-caret-left"></i>
                                     </button>
-                                    <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
-                                        <p class="text-white mb-0 small">@item.Quantity</p>
-                                    </div>
+                                    
+                                        <p class="text-dark mb-0 small">@item.Quantity</p>
+                                    
                                     <button type="submit" name="changeQuantity" value="+1" class="btn btn-primary px-3 ms-2">
                                         <i class="fas fa-caret-right"></i>
                                     </button>

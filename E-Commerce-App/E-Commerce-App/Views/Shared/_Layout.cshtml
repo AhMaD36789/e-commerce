@@ -94,24 +94,25 @@
 
     <div class="container-fluid main">
         <div class="row">
-            @if (!SharedFunctions.StringIsNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "[]")
+            @if (!SharedFunctions.StringIsNullOrEmpty(Context.Request.Cookies["productIds"]) && Context.Request.Cookies["productIds"] != "{}")
             {
                 @if (SharedFunctions.IsAuthenticated(signInManager, User) ||
                ViewContext.RouteData.Values["Controller"].ToString() == "Cart" &&
                ViewContext.RouteData.Values["Action"].ToString() == "Index")
 
                 {
-                    <div class="col-md-10">
+                    <div class="col-lg-10 col-md-8 col-sm-6">
                         <main role="main" class="pb-5">
                             @RenderBody()
                         </main>
                     </div>
 
-                    <div class="col-md-2 border-start border-1 border-success">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col border-start border-1 border-success ">
                         @await Component.InvokeAsync("CartSidebar")
                     </div>
 
                 }
+            }
             else
             {
                 <div class="col-md-12">
@@ -119,7 +120,6 @@
                         @RenderBody()
                     </main>
                 </div>
-            }
             }
             
             
