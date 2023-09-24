@@ -15,22 +15,39 @@
 <div class="row justify-content-center">
     @foreach (var item in Model)
     {
-        <div class="col-lg-2 col-md-6 mb-3 text-black">
-            <div class="card">
-                <div class="card-body">
-                    <img src="@item.imgURL" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@item.Name">
-                    <h5 class="card-title my-2">@item.Name</h5>
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="card w-100">
+                <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                    <img src="@item.imgURL" class="w-100" style="height:200px;" />
+                    <a asp-controller="Categories" asp-action="CategoryDetails" asp-route-categoryID="@item.CategoryId">
+                        <div class="mask">
+                            <div class="d-flex justify-content-start align-items-end h-100">
+                                <h5><span class="badge bg-primary ms-2">Discover it</span></h5>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-body text-center" style="max-height: 100px; overflow: hidden;">
+                    <a asp-controller="Categories" asp-action="CategoryDetails" asp-route-categoryID="@item.CategoryId" class="text-reset">
+                        <p class="fw-bold fs-3">@item.Name</p>
+                    </a>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
                     @if (User.IsInRole("Administrator"))
                     {
-                        <a href="@Url.Action("Delete", new { id = item.CategoryId })" class="btn btn-danger">Delete</a>
+                        <a href="@Url.Action("Delete", new { id = item.CategoryId })" class="btn btn-danger m-1">Delete</a>
                     }
                     @if (User.IsInRole("Editor"))
                     {
-                    <a href="@Url.Action("Edit", new { id = item.CategoryId })" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("Edit", new { id = item.CategoryId })" class="btn btn-primary m-1">Edit</a>
                     }
-                    <a href="@Url.Action("CategoryDetails", new { categoryID = item.CategoryId })" class="btn btn-info">Details</a>
+                    <a href="@Url.Action("CategoryDetails", new { categoryID = item.CategoryId })" class="btn btn-info m-1">Details</a>
                 </div>
             </div>
         </div>
+
     }
 </div>

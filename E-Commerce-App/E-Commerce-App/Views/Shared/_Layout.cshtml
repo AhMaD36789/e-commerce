@@ -101,16 +101,15 @@
                ViewContext.RouteData.Values["Action"].ToString() == "Index")
 
                 {
-                    <div class="col-lg-10 col-md-8 col-sm-6">
+                    <div class="col-lg-10 col-md-8 col-sm-8">
                         <main role="main" class="pb-5">
                             @RenderBody()
                         </main>
                     </div>
 
-                    <div class="col-lg-2 col-md-4 col-sm-6 col border-start border-1 border-success ">
+                    <div class="col-lg-2 col-md-4 col-sm-4 col border-start border-1 border-success d-flex justify-content-center">
                         @await Component.InvokeAsync("CartSidebar")
                     </div>
-
                 }
             }
             else
