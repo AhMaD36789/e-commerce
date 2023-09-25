@@ -6,54 +6,39 @@
 }
 
 <h1>Cart Details</h1>
+
 <hr />
-<a class="btn btn-primary px-3 m-3" asp-page="/SendEmail/SendEmail">Checkout</a>
-<div class="row">
-    @if (Model.Any())
-    {
-        @foreach (var cartItem in Model)
-        {
-            var product = cartItem.Product;
-            <div class="col-md-6 col-sm-6 col-lg-4  mb-3 ">
-                <div class="card">
-                    <div class="d-flex justify-content-between p-3">
+<a  class="btn btn-primary px-3 m-3"  asp-page="/SendEmail/SendEmail">Checkout</a>
+@if (Model.Any())
+{
+    <div class="bg-light p-2 m-2  border border-rounded rounded-3 col-lg-12 col-md-12 col-sm-12">
+    <table class="table bg-light">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cartItem in Model)
+            {
+                var product = cartItem.Product;
+                <tr>
+                    <td>
                         <p class="lead fw-bold mb-0">@product.Name</p>
-                        <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
-                            <p class="text-white mb-0 small">@cartItem.Quantity</p>
-                        </div>
-                    </div>
-                    <img src="@product.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@product.Name" />
-
-                    <div class="card-body text-dark">
-                        <div class="d-flex justify-content-between mb-3">
-                            <p class="fs-5 m-0">Price:</p>
-                            <p class="fs-5 m-0">@product.Price.ToString("0.00") JD</p>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            @if (product.StockQuantity == 0)
-                            {
-                                <p class="fs-5 ">Available: <span class="fw-bold">Out of stock</span></p>
-                            }
-                            else
-                            {
-                                <p class="fs-5 ">Available: <span class="fw-bold">@product.StockQuantity</span></p>
-                            }
-                        </div>
-                        <div class="d-flex justify-content-center mb-3 text-dark">
-                            <!-- Center-align the form -->
-                            
+                        <img src="@product.ProductImage" class="img-fluid" style="object-fit: fill; width: 150px; height: 100px;" alt="@product.Name" />
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
                             <form asp-action="UpdateCart" asp-controller="Cart" method="post">
-                                <!-- Include productId and quantity as hidden fields -->
                                 <input type="hidden" name="productId" value="@product.ProductId" />
-
-                                <!-- Update quantity buttons to submit the form -->
-                                <div class="d-flex align-items-center" style="max-width: 300px">
-                                    <!-- Add align-items-center -->
+                                <div class="d-flex align-items-center">
                                     <button type="submit" name="changeQuantity" value="-1" class="btn btn-primary px-3 me-2">
                                         <i class="fas fa-minus"></i>
                                     </button>
                                     <div class="form-outline text-dark">
-                                        <!-- Display the current quantity in the input field -->
                                         <input id="form1" min="0" name="quantity" value="@cartItem.Quantity" type="number" class="form-control" />
                                         <label class="form-label" for="form1">Quantity</label>
                                     </div>
@@ -61,29 +46,23 @@
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
-
-                                <!-- New 'Update Quantity' button -->
-                                <div class="d-flex justify-content-center">
-                                <button type="submit" name="changeQuantity" value="update" class="btn btn-primary px-3 mt-3">
-                                    <!-- Add mt-3 to create vertical spacing -->
-                                    Update Quantity
-                                </button>
-                                </div>
                             </form>
                         </div>
-                    </div>
+                    </td>
+                    <td>@product.Price.ToString("0.00") JD</td>
+                    <td>@(product.Price * cartItem.Quantity) JD</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-end me-2">
+        <h2>Total Price: @Model.Sum(cartItem => cartItem.Product.Price * cartItem.Quantity).ToString("0.00") JD</h2>
+    </div>
+    </div>
+}
 
 
-                    @if (TempData["warning"] != null)
-                    {
-                        <div class="alert alert-warning">
-                            @TempData["warning"]
-                        </div>
-                    }
-                </div>
-            </div>
-        }
-    }
+
     else
     {
         <div class="col-md-12">
