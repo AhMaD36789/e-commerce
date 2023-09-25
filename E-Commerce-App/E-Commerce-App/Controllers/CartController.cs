@@ -47,9 +47,9 @@ namespace E_Commerce_App.Controllers
             else
             {
                 productQuantities = new Dictionary<int, int>
-        {
-            { productId, 1 }
-        };
+                 {
+                         { productId, 1 }
+                 };
             }
 
             var options = new CookieOptions

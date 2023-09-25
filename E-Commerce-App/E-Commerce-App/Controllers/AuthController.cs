@@ -115,6 +115,10 @@ namespace E_Commerce_App.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
+            if (Request.Cookies["productIds"] != null)
+            {
+                Response.Cookies.Delete("productIds");
+            }
             return RedirectToAction("Index", "Home");
         }
     }
