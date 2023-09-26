@@ -1,4 +1,5 @@
-﻿using E_Commerce_App.Models.Interfaces;
+﻿using E_Commerce_App.Models;
+using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

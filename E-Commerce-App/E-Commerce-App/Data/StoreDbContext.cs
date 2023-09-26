@@ -13,13 +13,14 @@ namespace E_Commerce_App.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // This calls the base method, but does nothing
             base.OnModelCreating(modelBuilder);
-
 
             modelBuilder.Entity<Category>().HasData(
 
