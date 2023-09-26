@@ -5,5 +5,8 @@
         public Task<Order> Create(Order order);
 
         public Task<List<Order>> GetAll();
+
+        public Task<Order> GetByID(int orderID);
+        public Task<Order> Update(int orderID, Order NewOrder);
     }
 }

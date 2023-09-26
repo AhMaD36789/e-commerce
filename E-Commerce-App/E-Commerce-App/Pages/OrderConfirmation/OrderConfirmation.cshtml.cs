@@ -13,12 +13,14 @@ namespace E_Commerce_App.Pages.OrderConfirmation
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IOrder _order;
         private readonly IProduct _product;
+        private readonly IEmail _email;
 
-        public OrderConfirmationModel(UserManager<ApplicationUser> user, IOrder order, IProduct product)
+        public OrderConfirmationModel(UserManager<ApplicationUser> user, IOrder order, IProduct product, IEmail email)
         {
             _userManager = user;
             _order = order;
             _product = product;
+            _email = email;
         }
         [BindProperty]
         public Order OrderConfirmed { get; set; }
@@ -63,7 +65,7 @@ namespace E_Commerce_App.Pages.OrderConfirmation
                 var cartItem = new CartItem
                 {
                     Product = product,
-                    Quantity = item.Value
+                    Quantity = item.Value,
                 };
                 formCartItems.Add(cartItem);
             }
@@ -78,14 +80,27 @@ namespace E_Commerce_App.Pages.OrderConfirmation
                 CartItems = formCartItems
             };
 
+            await _order.Create(OrderConfirmed);
+
         }
 
-        public async Task OnPost(Order order)
+        public async Task<IActionResult> OnPost(Order order)
         {
+            order = await _order.Update(order.ID, order);
+
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+
+            await _email.SendEmailOrderSummery(userEmail, userName, order);
 
 
-            await _order.Create(order);
-            RedirectToAction("Index", "Home");
+
+            if (Request.Cookies["productIds"] != null)
+            {
+                Response.Cookies.Delete("productIds");
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
     }

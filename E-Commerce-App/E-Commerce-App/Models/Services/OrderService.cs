@@ -29,5 +29,39 @@ namespace E_Commerce_App.Models.Services
         {
             return await _context.Orders.ToListAsync();
         }
+
+        public async Task<Order> GetByID(int orderID)
+        {
+            var order = await _context.Orders
+                .Include(o => o.CartItems)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefaultAsync(id => id.ID == orderID);
+
+            if (order == null)
+            {
+                throw new KeyNotFoundException($"Category with id {orderID} not found.");
+            }
+            return order;
+        }
+
+        public async Task<Order> Update(int orderID, Order NewOrder)
+        {
+            var oldorder = await GetByID(orderID);
+
+            oldorder.ID = orderID;
+            oldorder.OrderDate = NewOrder.OrderDate;
+            oldorder.PhoneNumber = NewOrder.PhoneNumber;
+            oldorder.StreetAddress = NewOrder.StreetAddress;
+            oldorder.City = NewOrder.City;
+            oldorder.UserId = NewOrder.UserId;
+            oldorder.PostalCode = NewOrder.PostalCode;
+            oldorder.TotalPrice = NewOrder.TotalPrice;
+            oldorder.CartItems = oldorder.CartItems;
+
+            _context.Orders.Update(oldorder);
+            await _context.SaveChangesAsync();
+            return oldorder;
+
+        }
     }
 }
