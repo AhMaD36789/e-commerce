@@ -30,6 +30,7 @@ namespace E_Commerce_App
             builder.Services.AddTransient<IAddImageToCloud, AddImageService>();
             builder.Services.AddScoped<JWTTokenService>();
             builder.Services.AddTransient<IOrder, OrderService>();
+            builder.Services.AddTransient<IPaymentService, PaymentService>();
 
             // builder.Services.AddControllers();
             string connString = builder.Configuration.GetConnectionString("DefaultConnection");

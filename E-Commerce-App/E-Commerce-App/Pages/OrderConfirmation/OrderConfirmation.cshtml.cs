@@ -1,5 +1,6 @@
 using E_Commerce_App.Models;
 using E_Commerce_App.Models.Interfaces;
+using E_Commerce_App.Models.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,13 +15,15 @@ namespace E_Commerce_App.Pages.OrderConfirmation
         private readonly IOrder _order;
         private readonly IProduct _product;
         private readonly IEmail _email;
+        private readonly IPaymentService _paymentService;
 
-        public OrderConfirmationModel(UserManager<ApplicationUser> user, IOrder order, IProduct product, IEmail email)
+        public OrderConfirmationModel(UserManager<ApplicationUser> user, IOrder order, IProduct product, IEmail email, IPaymentService payment)
         {
             _userManager = user;
             _order = order;
             _product = product;
             _email = email;
+            _paymentService = payment;
         }
         [BindProperty]
         public Order OrderConfirmed { get; set; }
@@ -93,14 +96,19 @@ namespace E_Commerce_App.Pages.OrderConfirmation
 
             await _email.SendEmailOrderSummery(userEmail, userName, order);
 
+            // payment gateway
 
+
+            var session = await _paymentService.PaymentProcess(order);
+
+            Response.Headers.Add("Location", session.Url);
 
             if (Request.Cookies["productIds"] != null)
             {
                 Response.Cookies.Delete("productIds");
             }
 
-            return RedirectToAction("Index", "Home");
+            return new StatusCodeResult(303);
         }
 
     }
