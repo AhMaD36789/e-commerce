@@ -40,5 +40,86 @@ namespace E_Commerce_App.Models.Services
                 await smtp.SendMailAsync(message);
             }
         }
+
+        public async Task SendEmailOrderSummery(string recieverEmail, string recieverName, Order order)
+        {
+            string cartItemsBody = "";
+            foreach (var item in order.CartItems)
+            {
+                cartItemsBody += $"<p><strong>{item.Product.Name}</strong>: ${item.Product.Price} &times; {item.Quantity}</p>";
+            }
+
+            var dynamicBodyText = $@"
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }}
+            h3 {{
+                color: #333;
+            }}
+            hr {{
+                border: 1px solid #ddd;
+                margin: 20px 0;
+            }}
+            p {{
+                color: #555;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <h3>Thank you for your order from Tech Pioneers</h3>
+            <hr />
+            <p><strong>Order ID:</strong> {order.ID}</p>
+            {cartItemsBody}
+            <p><strong>Total:</strong> ${order.TotalPrice}</p>
+            <p>We thank you for your order and hope you visit us again soon.</p>
+        </div>
+    </body>
+    </html>";
+
+            var fromAddress = new MailAddress("MjhemPatata@gmail.com", "Tech Pioneers");
+            var toAddress = new MailAddress(recieverEmail, recieverEmail.Substring(0, recieverEmail.IndexOf("@")));
+            const string fromPassword = "4OhJ0cD3HY5vgdCq";
+            const string subject = "Order Summary";
+            string body = dynamicBodyText;
+
+            var authAddress = new MailAddress("ahmadsa28121999@gmail.com", "ahmad saleh");
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp-relay.brevo.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(authAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            {
+                message.Headers.Add("ApiKey", apiKey); // add the API key to the email headers
+
+                await smtp.SendMailAsync(message);
+            }
+        }
     }
 }
