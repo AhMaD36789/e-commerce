@@ -8,69 +8,53 @@
 <h1>Cart Details</h1>
 
 <hr />
-<a class="btn btn-primary px-3 m-3" asp-page="/OrderConfirmation/OrderConfirmation" asp-route-totalPrice="@Model.Sum(cartItem => cartItem.Product.Price * cartItem.Quantity)">Checkout</a>
+<a class="btn btn-primary px-3 m-3" asp-controller="Home" asp-action="Index">Back To Home</a>
 @if (Model.Any())
 {
     <div class="bg-light p-2 border border-rounded rounded-3 col-lg-12 col-md-12 col-sm-12 mb-5">
-    <table class="table bg-light">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var cartItem in Model)
-            {
-                var product = cartItem.Product;
+        <table class="table bg-light">
+            <thead>
                 <tr>
-                    <td>
-                        <p class="lead fw-bold mb-0">@product.Name</p>
-                        <img src="@product.ProductImage" class="img-fluid" style="object-fit: fill; width: 150px; height: 100px;" alt="@product.Name" />
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                                <form asp-controller="Cart" asp-action="UpdateCart" method="post">
-                                <input type="hidden" name="productId" value="@product.ProductId" />
-                                <div class="d-flex align-items-center">
-                                    <button type="submit" name="changeQuantity" value="-1" class="btn btn-primary px-3 me-2">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <div class="form-outline text-dark">
-                                        <input id="form1" min="0" name="quantity" value="@cartItem.Quantity" type="number" class="form-control" />
-                                        <label class="form-label" for="form1">Quantity</label>
-                                    </div>
-                                    <button type="submit" name="changeQuantity" value="+1" class="btn btn-primary px-3 ms-2">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </td>
-                    <td>@product.Price.ToString("0.00") JD</td>
-                    <td>@(product.Price * cartItem.Quantity) JD</td>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <div class="d-flex justify-content-end me-2">
-        <h2>Total Price: @Model.Sum(cartItem => cartItem.Product.Price * cartItem.Quantity).ToString("0.00") JD</h2>
-    </div>
+            </thead>
+            <tbody>
+                @foreach (var cartItem in Model)
+                {
+                    var product = cartItem.Product;
+                    <tr>
+                        <td>
+                            <p class="lead fw-bold mb-0">@product.Name</p>
+                            <img src="@product.ProductImage" class="img-fluid" style="object-fit: fill; width: 150px; height: 100px;" alt="@product.Name" />
+                        </td>
+                        <td>@product.Description</td>
+                        <td>@cartItem.Quantity</td>
+                        <td>@product.Price.ToString("0.00") JD</td>
+                        <td>@(product.Price * cartItem.Quantity) JD</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end me-2">
+            <h2>Total Price: @Model.Sum(cartItem => cartItem.Product.Price * cartItem.Quantity).ToString("0.00") JD</h2>
+        </div>
     </div>
 }
 
 
 
-    else
-    {
-        <div class="col-md-12">
-            <div class="alert alert-warning" role="alert">
-                Your cart is empty.
-            </div>
+else
+{
+    <div class="col-md-12">
+        <div class="alert alert-warning" role="alert">
+            Your cart is empty.
         </div>
-    }
+    </div>
+}
 </div>
 
 <script>
