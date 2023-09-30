@@ -30,7 +30,7 @@ namespace E_Commerce_App.Pages.OrderConfirmation
 
         public List<CartItem> formCartItems { get; set; }
 
-        public async Task OnGetAsync(decimal totalPrice)
+        public async Task OnGetAsync()
         {
             var productIdsCookie = HttpContext.Request.Cookies["productIds"];
 
@@ -38,29 +38,11 @@ namespace E_Commerce_App.Pages.OrderConfirmation
 
             if (productIdsCookie != null)
             {
-                try
-                {
-                    productQuantities = JsonConvert.DeserializeObject<Dictionary<int, int>>(productIdsCookie);
-                }
-                catch (JsonSerializationException)
-                {
-                    var productIds = JsonConvert.DeserializeObject<List<int>>(productIdsCookie);
-
-                    foreach (var id in productIds)
-                    {
-                        if (!productQuantities.ContainsKey(id))
-                        {
-                            productQuantities[id] = 1;
-                        }
-                        else
-                        {
-                            productQuantities[id]++;
-                        }
-                    }
-                }
+                productQuantities = JsonConvert.DeserializeObject<Dictionary<int, int>>(productIdsCookie);
             }
 
             formCartItems = new List<CartItem>();
+            decimal? totalPrice = 0;
 
             foreach (var item in productQuantities)
             {
@@ -70,6 +52,7 @@ namespace E_Commerce_App.Pages.OrderConfirmation
                     Product = product,
                     Quantity = item.Value,
                 };
+                totalPrice += product.Price * item.Value;
                 formCartItems.Add(cartItem);
             }
 
@@ -92,21 +75,19 @@ namespace E_Commerce_App.Pages.OrderConfirmation
             order = await _order.Update(order.ID, order);
 
             var userName = User.FindFirstValue(ClaimTypes.Name);
+
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
             await _email.SendEmailOrderSummery(userEmail, userName, order);
-
-            // payment gateway
-
 
             var session = await _paymentService.PaymentProcess(order);
 
             Response.Headers.Add("Location", session.Url);
 
-            if (Request.Cookies["productIds"] != null)
-            {
-                Response.Cookies.Delete("productIds");
-            }
+            //if (Request.Cookies["productIds"] != null)
+            //{
+            //    Response.Cookies.Delete("productIds");
+            //}
 
             return new StatusCodeResult(303);
         }

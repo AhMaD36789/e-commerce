@@ -64,16 +64,16 @@
                                         @if (signInManager.IsSignedIn(User))
                                         {
                                             <li>
-                                                <a class="dropdown-item d-flex justify-content-between" asp-controller="Cart" asp-action="Index">
+                                                <a class="dropdown-item d-flex justify-content-between" asp-page="/OrderConfirmation/OrderConfirmation">
                                                     Cart
                                                     <i class="fas fa-cart-shopping"></i>
                                                 </a>
                                             </li>
                                         }
-                                        @if (User.IsInRole("Administrator"))
+                                         @if (User.IsInRole("Administrator")) 
                                         {
                                             <li>
-                                                <a class="dropdown-item d-flex justify-content-between" asp-area="" asp-page="/Register/AdminRegister">
+                                                <a class="dropdown-item d-flex justify-content-between" asp-area="" asp-page="/Create/AdminRegister">
                                                     Admin Register
                                                     <i class="fas fa-circle-user"></i>
                                                 </a>
