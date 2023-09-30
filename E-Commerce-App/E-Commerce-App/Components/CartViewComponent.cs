@@ -3,7 +3,6 @@ using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-
 public class CartViewComponent : ViewComponent
 {
     private readonly IProduct _product;
@@ -59,8 +58,5 @@ public class CartViewComponent : ViewComponent
     }
 
 }
-public class CartItem
-{
-    public Product Product { get; set; }
-    public int Quantity { get; set; }
-}
+
+

@@ -13,13 +13,14 @@ namespace E_Commerce_App.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // This calls the base method, but does nothing
             base.OnModelCreating(modelBuilder);
-
 
             modelBuilder.Entity<Category>().HasData(
 
@@ -136,9 +137,36 @@ namespace E_Commerce_App.Data
                             ProductImage = "https://lab29ecommerceimages.blob.core.windows.net/productsimages/vari-2-monitor_48003_silver_iso.jpg"
                         }
                         });
+
+            var hasher = new PasswordHasher<ApplicationUser>();
+            var Admin = new ApplicationUser
+            {
+                Id = "1",
+                UserName = "Admin",
+                NormalizedUserName = "ADMIN",
+                Email = "adminUser@example.com",
+                PhoneNumber = "1234567890",
+                NormalizedEmail = "adminUser@EXAMPLE.COM",
+                EmailConfirmed = true,
+                LockoutEnabled = false
+            };
+            Admin.PasswordHash = hasher.HashPassword(Admin, "Admin@1+");
+
+            modelBuilder.Entity<ApplicationUser>().HasData(Admin);
+
+            var adminRoleId = "Administrator";
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                UserId = Admin.Id,
+                RoleId = adminRoleId
+            });
+
+
             SeedRole(modelBuilder, "Administrator");
             SeedRole(modelBuilder, "Editor");
             SeedRole(modelBuilder, "Users");
+
+
         }
 
 

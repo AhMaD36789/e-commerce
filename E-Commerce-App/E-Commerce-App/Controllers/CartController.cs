@@ -1,4 +1,5 @@
-﻿using E_Commerce_App.Models.Interfaces;
+﻿using E_Commerce_App.Models;
+using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -15,6 +16,11 @@ namespace E_Commerce_App.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Index()
+        {
+            return NoContent();
+        }
+
+        public async Task<IActionResult> PurchaseSummary(Order order)
         {
             var productIdsCookie = HttpContext.Request.Cookies["productIds"];
             if (productIdsCookie != null)
