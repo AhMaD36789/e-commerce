@@ -13,8 +13,8 @@ namespace E_Commerce_App.Models.Services
 
             var options = new SessionCreateOptions
             {
-                SuccessUrl = domain + "Cart/PurchaseSummary",
-                CancelUrl = domain + "Cart/PurchaseSummary",
+                SuccessUrl = domain + "Cart/OrderSummary",
+                CancelUrl = domain + "Cart/OrderSummary",
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment",
             };

@@ -12,6 +12,7 @@ namespace E_Commerce_App.Controllers
     public class AuthController : Controller
     {
         private IUserService userService;
+        private readonly IEmail _email;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -21,11 +22,12 @@ namespace E_Commerce_App.Controllers
         /// <param name="service">User service.</param>
         /// <param name="userManager">User manager.</param>
         /// <param name="signInManager">Sign-in manager.</param>
-        public AuthController(IUserService service, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AuthController(IUserService service, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmail email)
         {
             userService = service;
             _userManager = userManager;
             _signInManager = signInManager;
+            _email = email;
         }
 
         /// <summary>
@@ -60,6 +62,7 @@ namespace E_Commerce_App.Controllers
         ///     </item>
         ///   </list>
         /// </returns>
+
         [HttpPost]
         public async Task<ActionResult<UserDTO>> SignUp(RegisterUserDTO register)
         {
@@ -69,6 +72,46 @@ namespace E_Commerce_App.Controllers
             if (ModelState.IsValid)
             {
                 await userService.Authenticate(register.UserName, register.Password);
+
+                string emailSubject = "Welcome";
+
+                string emailBody = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n" +
+                    "<title>Welcome to Tech Pioneers</title>\r\n" +
+                    "<style>\r\n" +
+                    "body {\r\n" +
+                    "font-family: Arial, sans-serif;\r\n" +
+                    "margin: 0;\r\n" +
+                    "padding: 0;\r\n" +
+                    "background-color: #f4f4f4;\r\n" +
+                    "}\r\n" +
+                    ".email-container {\r\n" +
+                    "width: 80%;\r\n" +
+                    "margin: auto;\r\n" +
+                    "padding: 20px;\r\n" +
+                    "background-color: #fff;\r\n" +
+                    "box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);\r\n " +
+                    "}\r\n" +
+                    "h1 {\r\n" +
+                    "color: #444;\r\n" +
+                    "}\r\n" +
+                    "p {\r\n" +
+                    "color: #666;\r\n" +
+                    "line-height: 1.6;\r\n" +
+                    "}\r\n" +
+                    "</style>\r\n</head>\r\n<body>\r\n  " +
+                    "<div class=\"email-container\">\r\n" +
+                    "<h1>Welcome to Tech Pioneers!</h1>\r\n" +
+                    $"<p>Dear {register.UserName},</p>\r\n" +
+                    "<p>We're excited to have you on board. Thank you for registering at our e-commerce application, Tech Pioneers.</p>\r\n " +
+                    "<p>Start exploring the latest tech products on our platform. We're sure you'll find something you love!</p>\r\n " +
+                    "<p>If you have any questions or need assistance, feel free to reach out to our support team.</p>\r\n" +
+                    "<p>Happy shopping!</p>\r\n" +
+                    "<p>Best,</p>\r\n" +
+                    "<p>The Tech Pioneers Team</p>\r\n" +
+                    "</div>\r\n</body>\r\n</html>\r\n";
+
+                _email.SendEmail(register.Email, register.UserName, emailSubject, emailBody);
+
                 return Redirect("/Home/Index");
             }
             else

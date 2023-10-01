@@ -27,8 +27,28 @@ namespace E_Commerce_App.Models.Services
 
         public async Task<List<Order>> GetAll()
         {
-            return await _context.Orders.ToListAsync();
+            var orders = await _context.Orders
+                .Include(o => o.CartItems)
+                .ThenInclude(p => p.Product)
+                .ToListAsync();
+
+            if (orders == null)
+            {
+                throw new KeyNotFoundException($"No orders found.");
+            }
+
+            foreach (var order in orders)
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == order.UserId);
+                if (user != null)
+                {
+                    order.UserId = user.UserName;
+                }
+            }
+
+            return orders;
         }
+
 
         public async Task<Order> GetByID(int orderID)
         {
@@ -36,6 +56,21 @@ namespace E_Commerce_App.Models.Services
                 .Include(o => o.CartItems)
                 .ThenInclude(p => p.Product)
                 .FirstOrDefaultAsync(id => id.ID == orderID);
+
+            if (order == null)
+            {
+                throw new KeyNotFoundException($"Category with id {orderID} not found.");
+            }
+            return order;
+        }
+
+        public async Task<Order> GetByUserID(string orderID)
+        {
+            var order = await _context.Orders
+                .Include(o => o.CartItems)
+                .ThenInclude(p => p.Product)
+                .OrderBy(oDate => oDate.OrderDate)
+                .LastOrDefaultAsync(oID => oID.UserId == orderID);
 
             if (order == null)
             {
@@ -62,6 +97,11 @@ namespace E_Commerce_App.Models.Services
             await _context.SaveChangesAsync();
             return oldorder;
 
+        }
+
+        public async Task<Order> GetOrderSummary(Order order)
+        {
+            return order;
         }
     }
 }

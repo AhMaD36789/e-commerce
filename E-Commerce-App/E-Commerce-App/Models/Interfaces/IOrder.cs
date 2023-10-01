@@ -7,6 +7,10 @@
         public Task<List<Order>> GetAll();
 
         public Task<Order> GetByID(int orderID);
+        public Task<Order> GetByUserID(string orderID);
+
         public Task<Order> Update(int orderID, Order NewOrder);
+
+        public Task<Order> GetOrderSummary(Order order);
     }
 }
