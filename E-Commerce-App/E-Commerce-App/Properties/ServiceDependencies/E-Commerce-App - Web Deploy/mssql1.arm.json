@@ -51,7 +51,7 @@
             {
               "kind": "v12.0",
               "location": "[parameters('resourceLocation')]",
-              "name": "e-commerce-app-db-server",
+              "name": "e-commerce-server-sprint2",
               "type": "Microsoft.Sql/servers",
               "apiVersion": "2017-10-01-preview"
             },
@@ -63,11 +63,11 @@
               },
               "kind": "v12.0,user",
               "location": "[parameters('resourceLocation')]",
-              "name": "e-commerce-app-db-server/E-Commerce-App_db",
+              "name": "e-commerce-server-sprint2/E-Commerce-App_db",
               "type": "Microsoft.Sql/servers/databases",
               "apiVersion": "2017-10-01-preview",
               "dependsOn": [
-                "e-commerce-app-db-server"
+                "e-commerce-server-sprint2"
               ]
             }
           ]

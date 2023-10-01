@@ -9,7 +9,7 @@ namespace E_Commerce_App.Models.Services
         {
             StripeConfiguration.ApiKey = "sk_test_51Nu9apGTsxCj81xc4G7NzFGmwMldXKwNwRsxl2dQdabXZJ8VITVSQlpREi0j8qy8qQwdMKPo0FhOVvvUlst2Bi8900rdC6MHnn";
 
-            string domain = "https://localhost:7198/";
+            string domain = "https://e-commerce-app.azurewebsites.net/";
 
             var options = new SessionCreateOptions
             {
