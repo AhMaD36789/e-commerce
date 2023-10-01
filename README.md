@@ -108,6 +108,18 @@ The application has three user roles:
 
 Since this is a web application, it doesn't need to be installed. To use the application, navigate to the deployed URL in your web browser.
 
+### Screenshots
+![HomePage](https://lab29ecommerceimages.blob.core.windows.net/projectimages/HomePage.png)
+![CategoiesPage](https://lab29ecommerceimages.blob.core.windows.net/projectimages/CategoiesPage.png)
+![productsPage](https://lab29ecommerceimages.blob.core.windows.net/projectimages/productsPage.png)
+![LoginPage](https://lab29ecommerceimages.blob.core.windows.net/projectimages/LoginPage.png)
+![SideBar](https://lab29ecommerceimages.blob.core.windows.net/projectimages/SideBar.png)
+![AdminViewProducts](https://lab29ecommerceimages.blob.core.windows.net/projectimages/AdminViewProducts.png)
+![AdminDashBoard](https://lab29ecommerceimages.blob.core.windows.net/projectimages/AdminDashBoard.png)
+![PurchaseSummary](https://lab29ecommerceimages.blob.core.windows.net/projectimages/PurchaseSummary.png)
+![OrderSummeryConfirmation](https://lab29ecommerceimages.blob.core.windows.net/projectimages/OrderSummeryConfirmation.png)
+![PaymentCheckout](https://lab29ecommerceimages.blob.core.windows.net/projectimages/PaymentCheckout.png)
+
 ### Contributing
 
 - [Ahmad Harhsheh](https://www.linkedin.com/in/ahmad-harhsheh-aa1940231/)
