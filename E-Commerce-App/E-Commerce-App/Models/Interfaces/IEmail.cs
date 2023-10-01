@@ -2,8 +2,6 @@
 {
     public interface IEmail
     {
-        public Task SendEmail(string reciever);
-
-        public Task SendEmailOrderSummery(string recieverEmail, string recieverName, Order order);
+        public Task SendEmail(string recieverEmail, string recieverName, string emailSubject, string emailBody);
     }
 }

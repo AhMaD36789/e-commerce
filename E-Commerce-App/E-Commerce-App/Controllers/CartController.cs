@@ -1,17 +1,19 @@
-﻿using E_Commerce_App.Models;
-using E_Commerce_App.Models.Interfaces;
+﻿using E_Commerce_App.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace E_Commerce_App.Controllers
 {
     public class CartController : Controller
     {
         private readonly IProduct _product;
+        private readonly IOrder _order;
 
-        public CartController(IProduct product)
+        public CartController(IProduct product, IOrder order)
         {
             _product = product;
+            _order = order;
         }
 
         [HttpGet]
@@ -20,17 +22,26 @@ namespace E_Commerce_App.Controllers
             return NoContent();
         }
 
-        public async Task<IActionResult> PurchaseSummary(Order order)
+        public async Task<IActionResult> OrderSummary()
         {
             var productIdsCookie = HttpContext.Request.Cookies["productIds"];
             if (productIdsCookie != null)
             {
-                return ViewComponent("Cart");
+                var userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var order = await _order.GetByUserID(userID);
+
+                if (productIdsCookie != null)
+                {
+                    Response.Cookies.Delete("productIds");
+                }
+
+                return View(order);
             }
+
             else
-            {
-                return Content("");
-            }
+
+                return NoContent();
         }
 
         [HttpPost]

@@ -78,7 +78,57 @@ namespace E_Commerce_App.Pages.OrderConfirmation
 
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            await _email.SendEmailOrderSummery(userEmail, userName, order);
+            string emailSubject = "Order Summary";
+
+            string cartItemsBody = "";
+            foreach (var item in order.CartItems)
+            {
+                cartItemsBody += $"<p><strong>{item.Product.Name}</strong>: ${item.Product.Price} &times; {item.Quantity}</p>";
+            }
+
+            var dynamicBodyText = $@"
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }}
+            h3 {{
+                color: #333;
+            }}
+            hr {{
+                border: 1px solid #ddd;
+                margin: 20px 0;
+            }}
+            p {{
+                color: #555;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <h3>Thank you for your order from Tech Pioneers</h3>
+            <hr />
+            <p><strong>Order ID:</strong> {order.ID}</p>
+            {cartItemsBody}
+            <p><strong>Total:</strong> ${order.TotalPrice}</p>
+            <p>We thank you for your order and hope you visit us again soon.</p>
+        </div>
+    </body>
+    </html>";
+
+            await _email.SendEmail(userEmail, userName, emailSubject, dynamicBodyText);
 
             var session = await _paymentService.PaymentProcess(order);
 
